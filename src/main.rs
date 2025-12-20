@@ -15,7 +15,15 @@ const MAIN_CSS: Asset = asset!("/assets/main.css");
 const HEADER_SVG: Asset = asset!("/assets/header.svg");
 
 fn main() {
-    dioxus::launch(App);
+
+    #[cfg(feature = "server")] 
+        LaunchBuilder::new()
+        .with_cfg(server_only!(
+            dioxus_server::ServeConfig::default()
+            .incremental(dioxus_server::IncrementalRendererConfig::default())))
+        .launch(App);
+    
+     dioxus::launch(App);
 }
 
 #[component]
@@ -27,34 +35,14 @@ fn App() -> Element {
     }
 }
 
-#[component]
-pub fn Hero() -> Element {
-    rsx! {
-        div {
-            id: "hero",
-            img { src: HEADER_SVG, id: "header" }
-            div { id: "links",
-                a { href: "https://dioxuslabs.com/learn/0.7/", "📚 Learn Dioxus" }
-                a { href: "https://dioxuslabs.com/awesome", "🚀 Awesome Dioxus" }
-                a { href: "https://github.com/dioxus-community/", "📡 Community Libraries" }
-                a { href: "https://github.com/DioxusLabs/sdk", "⚙️ Dioxus Development Kit" }
-                a { href: "https://marketplace.visualstudio.com/items?itemName=DioxusLabs.dioxus", "💫 VSCode Extension" }
-                a { href: "https://discord.gg/XgGxMSkvUM", "👋 Community Discord" }
-            }
-        }
-    }
-}
 
-/// Home page
 #[component]
 fn Home() -> Element {
     rsx! {
-        Hero {}
         Echo {}
     }
 }
 
-/// Blog page
 #[component]
 pub fn Blog(id: i32) -> Element {
     rsx! {
@@ -129,5 +117,10 @@ fn Echo() -> Element {
 /// Echo the user input on the server.
 #[post("/api/echo")]
 async fn echo_server(input: String) -> Result<String, ServerFnError> {
+    println!("Echoing {}", input);
     Ok(input)
+}
+#[get("/api/name")]
+async fn get_name() -> Result<String, ServerFnError> {
+    Ok("LimLife".to_string())
 }

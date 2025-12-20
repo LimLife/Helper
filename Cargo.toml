@@ -7,11 +7,12 @@ edition = "2021"
 
 
 [dependencies]
-dioxus = { version = "0.7.1", features = ["router", "fullstack"] }
+dioxus = { version = "0.7.2", features = ["router", "fullstack"] }
+
 
 [features]
-default = ["web"]
+default = []
 web = ["dioxus/web"]
+server = ["dioxus/server"]
 desktop = ["dioxus/desktop"]
 mobile = ["dioxus/mobile"]
-server = ["dioxus/server"]
