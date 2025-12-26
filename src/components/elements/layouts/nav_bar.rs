@@ -1,11 +1,11 @@
 use dioxus::prelude::*;
 
-use crate::components::elements::ui::collapse::collapsibale::Collapsable;
+use crate::components::elements::ui::collapse::Collapse;
 #[component]
 pub fn Navbar() -> Element {
     rsx! {
         div {  }
-        Collapsable {
+        Collapse {
             id: "Collaspe-1",
             label: "collapse-1",
             content: rsx!{
@@ -14,7 +14,7 @@ pub fn Navbar() -> Element {
                 }
             }
         },
-                Collapsable {
+                Collapse {
             id: "Collaspe-2",
             label: "collapse-2",
             content: rsx!{
@@ -23,7 +23,7 @@ pub fn Navbar() -> Element {
                 }
             }
         },
-                Collapsable {
+                Collapse {
             id: "Collaspe-3",
             label: "collapse-3",
             content: rsx!{
