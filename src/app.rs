@@ -1,3 +1,4 @@
+use dioxus::prelude::*;
 use crate::components::elements::app::App;
 
 pub fn set_app() {

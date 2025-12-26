@@ -1,5 +1,5 @@
 use dioxus::prelude::*;
-use crate::components::elements::echo::Echo;
+use crate::components::elements::layouts::echo::Echo;
 
 
 #[component]

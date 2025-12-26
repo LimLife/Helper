@@ -2,10 +2,12 @@ use dioxus::prelude::*;
 use dioxus_router::{Routable};
 
 use crate::components::{elements::{
-    home::Home,
-    nav_bar::Navbar,
-    blog::Blog
+   pages::home::Home,
+   layouts::nav_bar::Navbar,
+   pages::blog::Blog
 }};
+
+
 #[derive(Debug, Clone, Routable, PartialEq)]
 #[rustfmt::skip]
 pub enum Route {

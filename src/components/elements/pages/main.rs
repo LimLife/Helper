@@ -1,0 +1,15 @@
+use dioxus::prelude::*;
+
+
+
+
+#[component]
+pub fn Main() -> Element {
+   
+   rsx!{
+    div {
+        id: "main",
+        "Hello World"
+    }
+   }
+}
