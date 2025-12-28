@@ -2,10 +2,10 @@ use dioxus::prelude::*;
 
 
 #[component]
-pub fn LeftBar()->Element {
-    rsx! {
+pub fn NavLink() -> Element {
+    rsx!{
         div {
-            h4 { "Left Bar" }
+            "Nav Link"
         }
     }
 }

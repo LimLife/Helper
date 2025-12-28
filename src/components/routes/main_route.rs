@@ -3,7 +3,6 @@ use dioxus_router::{Routable};
 
 use crate::components::{elements::{
    pages::home::Home,
-   layouts::nav_bar::Navbar,
    pages::blog::Blog
 }};
 
@@ -11,7 +10,6 @@ use crate::components::{elements::{
 #[derive(Debug, Clone, Routable, PartialEq)]
 #[rustfmt::skip]
 pub enum Route {
-    #[layout(Navbar)]
     #[route("/")]
     Home {},
     #[route("/blog/:id")]

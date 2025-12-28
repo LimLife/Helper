@@ -1,5 +1,10 @@
 use dioxus::prelude::*;
 
+use crate::components::elements::layouts::{
+    header::Header,
+    main_layout::MainLayout,
+    footer::Footer
+};
 
 
 
@@ -7,9 +12,8 @@ use dioxus::prelude::*;
 pub fn Main() -> Element {
    
    rsx!{
-    div {
-        id: "main",
-        "Hello World"
-    }
+    Header {},
+    MainLayout {},
+    Footer {}
    }
 }

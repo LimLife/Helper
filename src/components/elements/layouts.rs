@@ -1,3 +1,3 @@
-pub mod echo;
-pub mod nav_bar; 
-pub mod lefr_bar;
+pub mod header;
+pub mod main_layout;
+pub mod footer;
