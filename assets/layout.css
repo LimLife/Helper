@@ -1,0 +1,65 @@
+/*
+------------------------------------------------------------------------------
+*/
+/*
+    Header
+*/
+.header {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+
+    /*
+    temp
+    */
+    border: 1px solid green;
+}
+/*
+    Header  -  Brand
+*/
+.brand {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    place-items: center;
+}
+.brand-description {
+    display: grid;
+    
+}
+/*
+    Header  - GlobalSerarch
+*/
+/*
+    Header - UserMenu
+*/
+/*
+------------------------------------------------------------------------------
+*/
+/*
+    MainLayout
+*/
+.main-layout {
+    display: grid;
+    height: 100vh;
+    grid-template-columns: repeat(3, 1fr);
+    /*
+    temp
+    */
+    border: 1px solid green;
+}
+
+
+/*
+------------------------------------------------------------------------------
+*/
+/*
+    Footer
+*/
+.footer {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    justify-content: center;
+    /*
+    temp
+    */
+    border: 1px solid green;
+}

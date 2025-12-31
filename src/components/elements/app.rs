@@ -7,6 +7,7 @@ pub fn App() -> Element {
         document::Link { rel: "icon", href: assets::images::FAVICON }
         document::Link { rel: "stylesheet", href: assets::css::MAIN_CSS }
         document::Link { rel: "stylesheet", href: assets::css::UI_CSS }
+        document::Link { rel: "stylesheet", href: assets::css::LAYOUT_CSS }
         Router::<Route> {}
     }
 }
