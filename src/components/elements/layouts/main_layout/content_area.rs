@@ -14,9 +14,11 @@ use super::content_area::{
 #[component]
 pub fn ContentArea() -> Element {
     rsx!{
-        Breadcrumb {  },
-        ArticleHeader {},
-        ArticleBody {},
-        ArticleNavigation {}
+        div { id: "content-area", class: "content-area",
+            Breadcrumb {}
+            ArticleHeader {}
+            ArticleBody {}
+            ArticleNavigation {}
+        }
     }
 }

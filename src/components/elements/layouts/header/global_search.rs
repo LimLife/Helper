@@ -10,12 +10,13 @@ use super::global_search::{
     search_shortcut_hint::SearchShortcutHint
 };
 
+#[component]
 pub fn GlobalSearch() -> Element {
     rsx!{
-        div { 
-            SearchInput{},
-            SearchResultDropDown{},
-            SearchShortcutHint{}
+        div { id: "global-search", class: "global-search",
+            SearchInput {}
+            SearchResultDropDown {}
+            SearchShortcutHint {}
         }
     }
 }

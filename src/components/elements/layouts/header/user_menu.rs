@@ -14,8 +14,10 @@ use super::user_menu::{
 #[component]
 pub fn UserMenu() -> Element {
     rsx!{
-        BookmarkButton{},
-        HistoryButton{},
-        UserAvatarMenu{}
+        div { id: "user-menu", class: "user-menu",
+            BookmarkButton {}
+            HistoryButton {}
+            UserAvatarMenu {}
+        }
     }
 }
