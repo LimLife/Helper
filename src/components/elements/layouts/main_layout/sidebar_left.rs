@@ -14,8 +14,10 @@ use super::sidebar_left::{
 #[component]
 pub fn SidebarLeft() -> Element {
     rsx!{
-        LanguageTree { },
-        RecentSection { },
-        SidebarHeader { }
+        div { id: "sidebar-left", class: "sidebar-left",
+            LanguageTree {}
+            RecentSection {}
+            SidebarHeader {}
+        }
     }
 }
