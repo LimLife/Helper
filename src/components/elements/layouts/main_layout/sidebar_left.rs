@@ -15,9 +15,9 @@ use super::sidebar_left::{
 pub fn SidebarLeft() -> Element {
     rsx!{
         div { id: "sidebar-left", class: "sidebar-left",
+            SidebarHeader {}
             LanguageTree {}
             RecentSection {}
-            SidebarHeader {}
         }
     }
 }
