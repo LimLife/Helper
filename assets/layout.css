@@ -87,7 +87,49 @@
     border: 1px solid green;
 }
 
+/*
+    MainLayout - LeftSidebar
+*/
+.left-sidebar {
+    display: grid;
+    border: 1px solid yellow;
+}
 
+/*
+   Header
+*/
+.left-sidebar-header {
+    display: block;
+}
+/*
+    LanguageTree 
+*/
+
+/*
+    RecentSection
+*/
+/*
+    LanguageTree -  LanguageSection
+*/
+.lenguage-section {
+    display: block;
+}
+/*
+    LanguageHeader
+*/
+.language-header {
+    display: flex;
+    justify-content: flex-start;
+}
+.language-icon {
+    background-color: transparent;
+}
+.language-title {
+    font-size: 14px;
+}
+.expand-arrow {
+    transform: rotate(90deg);
+}
 /*
 ------------------------------------------------------------------------------
 */

@@ -11,7 +11,9 @@ use super::language_section::{
 #[component]
 pub fn LanguageSection()-> Element {
     rsx!{
-        LanguageHeader {  },
-        LanguageContent {  }
+        details { id: "lenguage-section", class: "lenguage-section",
+            summary { LanguageHeader {} }
+            LanguageContent {}
+        }
     }
 }

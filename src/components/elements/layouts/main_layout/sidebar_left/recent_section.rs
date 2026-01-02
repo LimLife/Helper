@@ -12,7 +12,9 @@ use super::recent_section::{
 #[component]
 pub fn RecentSection() -> Element{
     rsx!{
-        RecentHeader {  },
-        RecentItem {  }
+        details {
+            summary { RecentHeader {} }
+            RecentItem {}
+        }
     }
 }
