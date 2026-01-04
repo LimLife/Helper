@@ -1,0 +1,38 @@
+/*Collapse*/
+.ui_collapse {
+    margin: 10px 0;
+    overflow: hidden;
+    font-family: sans-serif;
+}
+.ui_collapse input {
+    display: none;
+}
+.ui_collapse-label {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px;
+    user-select: none;
+    font-weight: 600;
+}
+
+.ui_collapse-label::after {
+    transition: transform  0.25 ease;
+} 
+.ui_collapse input:checked + .ui_collapse-label::after {
+    transform: rotate(90deg);
+}
+.ui_collapse-content-wrapper {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.3s ease;
+}
+
+.ui_collapse input:checked ~ .ui_collapse-content-wrapper {
+    grid-template-rows: 1fr;
+}
+
+.ui_collapse-content {
+    overflow: hidden;
+    padding: 0 12px;
+}
