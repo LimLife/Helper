@@ -1,0 +1,23 @@
+body {
+    background-color:var(--main-background-color);
+    color: var(--main-text-color);
+    font-family: var(--font-family-main);
+}
+::root {
+    /*Color*/
+    --main-background-color: #0f1116;
+    --main-text-color: #ffffff;
+
+    /*Font Size*/
+    --font-size-base: 14px;
+    --font-size-small: 12px;
+
+    /*
+        Spaceing
+    */
+
+    /*
+        Font Family
+    */
+    --font-family-main: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}

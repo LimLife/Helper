@@ -1,0 +1,9 @@
+.main-layout {
+    display: grid;
+    height: 100vh;
+    grid-template-columns: repeat(3, 1fr);
+    /*
+    temp
+    */
+    border: 1px solid green;
+}

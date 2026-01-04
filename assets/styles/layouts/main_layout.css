@@ -1,0 +1,131 @@
+/*
+------------------------------------------------------------------------------
+*/
+/*
+    Header
+*/
+
+/*
+    Header  -  Brand
+*/
+.brand {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    place-items: center;
+}
+.brand-description {
+    display: grid;
+    
+}
+/*
+    Header  =   GlobarSearch
+*/
+.global-search {
+    display: grid;
+    position: relative;
+    align-items: center;
+    display: flex;
+}
+.search {
+    flex: 0.95;
+}
+.search-input {
+    width: 100%;
+    text-align: center;
+}
+.search-hint {
+    position: absolute;
+    right: 4.75em;
+    pointer-events: none;
+    top: 50%;
+    color: #888;
+    transform: translateY(-50%);
+}
+.search-result {
+    display: none;
+}
+.search-shortcut {
+    display: none;
+}
+/*
+    Header - UserMenu
+*/
+.user-menu {
+    display: grid;
+}
+.bookmark-button {
+    display: none;
+}
+.history-button {
+    display: none;
+}
+.user-avatar-menu {
+    display: grid;
+    place-content: center;
+}
+/*
+------------------------------------------------------------------------------
+*/
+/*
+    MainLayout
+*/
+
+
+/*
+    MainLayout - LeftSidebar
+*/
+.left-sidebar {
+    display: grid;
+    border: 1px solid yellow;
+}
+
+/*
+   Header
+*/
+.left-sidebar-header {
+    display: block;
+}
+/*
+    LanguageTree 
+*/
+
+/*
+    RecentSection
+*/
+/*
+    LanguageTree -  LanguageSection
+*/
+.lenguage-section {
+    display: block;
+}
+/*
+    LanguageHeader
+*/
+.language-header {
+    display: flex;
+    justify-content: flex-start;
+}
+.language-icon {
+    background-color: transparent;
+}
+.language-title {
+    font-size: 14px;
+}
+.expand-arrow {
+    transform: rotate(90deg);
+}
+/*
+------------------------------------------------------------------------------
+*/
+/*
+    Footer
+*/
+.footer {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    justify-content: center;
+    /*
+    temp
+    */
+    border: 1px solid green;
+}
