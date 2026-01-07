@@ -1,0 +1,9 @@
+.footer {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    justify-content: center;
+    /*
+    temp
+    */
+    border: 1px solid green;
+}
