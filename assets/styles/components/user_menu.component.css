@@ -1,0 +1,13 @@
+.user-menu {
+    display: grid;
+}
+.bookmark-button {
+    display: none;
+}
+.history-button {
+    display: none;
+}
+.user-avatar-menu {
+    display: grid;
+    place-content: center;
+}

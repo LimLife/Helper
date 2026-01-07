@@ -1,0 +1,17 @@
+.lenguage-section {
+    display: block;
+}
+
+.language-header {
+    display: flex;
+    justify-content: flex-start;
+}
+.language-icon {
+    background-color: transparent;
+}
+.language-title {
+    font-size: 14px;
+}
+.expand-arrow {
+    transform: rotate(90deg);
+}
