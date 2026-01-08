@@ -1,23 +1,33 @@
-body {
-    background-color:var(--main-background-color);
-    color: var(--main-text-color);
-    font-family: var(--font-family-main);
+.footer {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  justify-content: center;
+  /*
+  temp
+  */
+  border: 1px solid green;
 }
-::root {
-    /*Color*/
-    --main-background-color: #0f1116;
-    --main-text-color: #ffffff;
 
-    /*Font Size*/
-    --font-size-base: 14px;
-    --font-size-small: 12px;
-
-    /*
-        Spaceing
-    */
-
-    /*
-        Font Family
-    */
-    --font-family-main: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+.header {
+  display: grid;
+  grid-template-columns: 1fr 3fr 1fr;
+  /*
+  temp
+  */
+  border: 1px solid green;
 }
+
+.main-layout {
+  display: grid;
+  height: 100vh;
+  grid-template-columns: repeat(3, 1fr);
+  /*
+  temp
+  */
+  border: 1px solid green;
+}
+
+.left-sidebar {
+  display: grid;
+  border: 1px solid yellow;
+}/*# sourceMappingURL=main.css.map */
