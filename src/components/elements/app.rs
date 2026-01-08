@@ -1,7 +1,7 @@
 use dioxus::prelude::*;
 
 use crate::components::{assets::{
-    css::import_layout_styles,
+    css::import_styles,
     images::FAVICON
 },
     routes::main_route::Route
@@ -9,7 +9,7 @@ use crate::components::{assets::{
 #[component]
 pub fn App() -> Element {
     rsx! {
-        import_layout_styles {}
+        import_styles {}
         document::Link { rel: "icon", href: FAVICON }
         Router::<Route> {}
     }
