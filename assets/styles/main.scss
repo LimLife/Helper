@@ -1,6 +1,8 @@
 @use "./_layouts.scss";
-@use "_components.scss";
+@use "./components.scss";
 @use "_pages.scss";
 @use "_utils.scss";
 @use "_ui.scss";
-@use "variables";
+@use "_variables";
+@use "_css_variables";
+@use "_app.scss";
