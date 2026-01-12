@@ -137,6 +137,32 @@
   place-content: center;
 }
 
+.breadcrumbs {
+  display: flex;
+  flex-direction: row;
+  margin: var(--space-zero);
+  padding: var(--space-zero);
+  list-style: none;
+  gap: var(--space-sm);
+}
+.breadcrumbs-item {
+  display: flex;
+}
+
+.artical-header {
+  display: grid;
+  grid-template-rows: auto auto;
+  grid-template-columns: auto;
+  grid-auto-flow: rows;
+  border: 1px solid rgb(69, 1, 255);
+  /*
+  Temp
+  */
+}
+.artical-header-description {
+  grid-column: span 2;
+}
+
 .ui_collapse {
   margin: var(--space-sm) 0;
   overflow: hidden;
@@ -191,6 +217,7 @@
   --color-danger: #dc3545;
   --color-info: #0dcaf0;
   /*Spacing*/
+  --space-zero: 0rem;
   --space-2xs: 0.125rem;
   --space-xs: 0.25rem;
   --space-sm: 0.5rem;

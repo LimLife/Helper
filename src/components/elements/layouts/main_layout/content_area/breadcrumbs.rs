@@ -6,8 +6,12 @@ use super::breadcrumbs::breadcrumb_item::BreadcrumbItem;
 
 #[component]
 pub fn Breadcrumb() -> Element {
+
     rsx!{
-        div {
+        ul { class: "breadcrumbs",
+            BreadcrumbItem {}
+            BreadcrumbItem {}
+            BreadcrumbItem {}
             BreadcrumbItem {}
         }
     }

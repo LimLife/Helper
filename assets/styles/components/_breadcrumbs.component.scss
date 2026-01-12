@@ -1,3 +1,12 @@
 .breadcrumbs {
-    
+    display: flex;
+    flex-direction: row;
+    margin: var(--space-zero);
+    padding: var(--space-zero);
+    list-style: none;
+    gap: var(--space-sm);
+    &-item {
+        display: flex;
+    }
+
 }

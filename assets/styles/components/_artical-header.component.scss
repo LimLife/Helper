@@ -1,0 +1,14 @@
+.artical-header {
+    display: grid;
+    grid-template-rows: auto auto;
+    grid-template-columns: auto;
+    grid-auto-flow: rows;
+    border: 1px solid rgb(69, 1, 255);
+
+    &-description {
+        grid-column: span 2;
+    }
+    /*
+    Temp
+    */
+}
