@@ -4,8 +4,6 @@ use dioxus::prelude::*;
 #[component]
 pub fn DataTypeCard() -> Element{
     rsx!{
-        div{
-               "data type card"
-        }
+        div { class: "artical-body-grid", "data type card" }
     }
 }

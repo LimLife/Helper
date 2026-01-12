@@ -1,0 +1,11 @@
+.code-block {
+    display: grid;
+
+    border: 1px solid purple;
+    border-radius: 1rem;
+
+    &-header {
+        display: flex;
+        flex-direction: row;
+    }
+}

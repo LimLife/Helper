@@ -11,7 +11,9 @@ use super::article_navigation::{
 #[component]
 pub fn ArticleNavigation()->Element{
     rsx!{
-        NextArticleLink {  },
-        PrevArticleLink {  }
+        nav { id: "nav-link", class: "article-navigation",
+            NextArticleLink {}
+            PrevArticleLink {}
+        }
     }
 }

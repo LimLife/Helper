@@ -16,10 +16,12 @@ use super::article_body::{
 #[component]
 pub fn ArticleBody() -> Element {
     rsx!{
-        Section {  },
-        CodeBlock {  },
-        InfoBox {},
-        WarningBox {},
-        Grid {}
+        article { id: "artical-main-content", class: "artical-body",
+            Section {}
+            CodeBlock {}
+            InfoBox {}
+            WarningBox {}
+            Grid {}
+        }
     }
 }

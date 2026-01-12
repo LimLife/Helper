@@ -4,7 +4,7 @@
     grid-template-columns: auto;
     grid-auto-flow: rows;
     border: 1px solid rgb(69, 1, 255);
-
+    font-size: var(--font-size-root);
     &-description {
         grid-column: span 2;
     }

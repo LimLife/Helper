@@ -5,6 +5,8 @@ use dioxus::prelude::*;
 #[component]
 pub fn CodeContent() -> Element {
     rsx! {
-        div { "CodeContent"}
+        pre {
+            code { "use dioxus::prelude::*;" }
+        }
     }
 }

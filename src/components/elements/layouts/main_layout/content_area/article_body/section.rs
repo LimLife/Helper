@@ -11,9 +11,9 @@ use super::section::{
 #[component]
 pub fn Section()->Element{
     rsx!{
-        div {  
-            Paragraph {  },
-            SectionTitle {},
+        p {
+            Paragraph {}
+            SectionTitle {}
         }
     }
 }
