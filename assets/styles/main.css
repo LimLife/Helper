@@ -20,7 +20,9 @@
 .main-layout {
   display: grid;
   height: 100vh;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: 1fr 3fr 1fr;
+  margin: var(--space-2xl);
+  gap: var(--space-2lg);
   /*
   temp
   */
@@ -28,8 +30,25 @@
 }
 
 .left-sidebar {
-  display: grid;
+  display: flex;
   border: 1px solid yellow;
+  flex-direction: column;
+}
+
+.content-area {
+  display: grid;
+  /*
+      Temp
+  */
+  border: 1px solid green;
+}
+
+.sidebar-right {
+  display: grid;
+  /*
+      temp
+  */
+  border: 1px solid greenyellow;
 }
 
 .brand {
@@ -89,7 +108,7 @@
 }
 
 .language-title {
-  font-size: 14px;
+  font-size: var(--font-size-root);
 }
 
 .expand-arrow {
@@ -98,6 +117,7 @@
 
 .left-sidebar-header {
   display: block;
+  font-size: var(--font-size-root);
 }
 
 .user-menu {
@@ -117,16 +137,77 @@
   place-content: center;
 }
 
+.ui_collapse {
+  margin: var(--space-sm) 0;
+  overflow: hidden;
+  font-family: var(--font-family-base);
+  /*
+  &-input[type="checkbox"]:checked + &-label::after {
+      transform: rotate(90deg);
+  }
+  */
+}
+.ui_collapse-input[type=checkbox] {
+  display: none;
+}
+.ui_collapse-label {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--space-md);
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+  font-weight: 600;
+  /*
+  &::after {
+      content: ">";
+      transition: var(--transition-very-fast);
+  }
+  */
+}
+.ui_collapse-content-wrapper {
+  max-height: 0;
+  transition: max-height 0.3s ease;
+  overflow: hidden;
+}
+.ui_collapse-content {
+  overflow: hidden;
+  padding: 0 12px;
+}
+.ui_collapse-input[type=checkbox]:checked ~ .ui_collapse-content-wrapper {
+  max-height: 500px;
+}
+
 :root {
   --color-bg-page: #000000;
   --font-family-base: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   --font-size-root: 16px;
   --color-text-primary: #ffffff;
+  --color-content-primary: #ddc0c0;
   /* States */
   --color-success: #28a745;
   --color-warning: #ffc107;
   --color-danger: #dc3545;
   --color-info: #0dcaf0;
+  /*Spacing*/
+  --space-2xs: 0.125rem;
+  --space-xs: 0.25rem;
+  --space-sm: 0.5rem;
+  --space-md: 0.75rem;
+  --space-lg: 1rem;
+  --space-xl: 1.125rem;
+  --space-2xl: 1.5rem;
+  --space-2lg: 2rem;
+  --transition-very-fast: 0.25ms ease;
+  --transition-fast: 150ms ease;
+  --transition-base: 250ms ease;
+  --transition-slow: 400ms ease;
+}
+
+:root[theme=dark] {
+  --color-bg-page: #ffffff;
+  --color-text-primary: #000000;
 }
 
 html,

@@ -14,7 +14,7 @@ use super::sidebar_left::{
 #[component]
 pub fn SidebarLeft() -> Element {
     rsx!{
-        div { id: "sidebar-left", class: "sidebar-left",
+        div { id: "left-sidebar", class: "left-sidebar",
             SidebarHeader {}
             LanguageTree {}
             RecentSection {}

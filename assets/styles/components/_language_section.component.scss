@@ -10,7 +10,7 @@
     background-color: transparent;
 }
 .language-title {
-    font-size: 14px;
+    font-size: var(--font-size-root);
 }
 .expand-arrow {
     transform: rotate(90deg);

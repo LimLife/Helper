@@ -14,12 +14,10 @@ use super::main_layout::{
 #[component]
 pub fn MainLayout() -> Element{
     rsx!{
-        div { 
-            id: "main-layout",
-            class:"main-layout",
-            SidebarLeft {  },
-            ContentArea {  },
-            SidebarRight {  }
+        main { id: "main-layout", class: "main-layout",
+            SidebarLeft {}
+            ContentArea {}
+            SidebarRight {}
         }
     }
 }
