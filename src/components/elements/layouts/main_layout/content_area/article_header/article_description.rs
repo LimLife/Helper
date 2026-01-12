@@ -4,6 +4,6 @@ use dioxus::prelude::*;
 #[component]
 pub fn ArticleDescription() -> Element {
     rsx!{
-        div { "Article Description" }
+        div { class: "artical-header-description", "Article Description" }
     }
 }
