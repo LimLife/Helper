@@ -1,1 +1,1 @@
-mod nav_navigation_store;
+pub  mod nav_navigation_store;
