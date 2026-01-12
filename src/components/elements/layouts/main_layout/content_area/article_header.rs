@@ -13,11 +13,10 @@ use super::article_header::{
 #[component]
 pub fn ArticleHeader() -> Element {
     rsx!{
-        div { id: "artical-header", class: "artical-header",
+        h1 { id: "artical-header", class: "artical-header",
             ArticleDescription {}
             ArticleTitle {}
             VersionSwitcher {}
-        
         }
     }
 }

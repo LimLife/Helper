@@ -7,6 +7,6 @@ use super::grid::data_type_card::DataTypeCard;
 #[component]
 pub fn Grid()->Element{
     rsx!{
-        DataTypeCard {  }
+        div { class: "artical-body-grid-wraper", DataTypeCard {} }
     }
 }

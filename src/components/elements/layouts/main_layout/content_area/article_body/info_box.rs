@@ -4,8 +4,6 @@ use dioxus::prelude::*;
 #[component]
 pub fn InfoBox() -> Element {
     rsx!{
-        div{
-            "info box"
-        }
+        div { class: "artical-body-info-box", "info box" }
     }
 }
