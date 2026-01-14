@@ -3,6 +3,6 @@ use dioxus::prelude::*;
 #[component]
 pub fn FooterCopyright() -> Element {
     rsx! {
-        span { "Footer Copyright" }
+        span { class: "footer-copyright", "Footer Copyright" }
     }
 }

@@ -2,10 +2,8 @@ use dioxus::prelude::*;
 
 
 #[component]
-pub fn TocItem()->Element{
+pub fn TocItem(content: String)->Element{
     rsx!{
-        div { 
-            "Toc Items"
-         }
+        div { {content} }
     }
 }

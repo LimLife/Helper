@@ -9,7 +9,9 @@ use super::display_settings::{
 #[component]
 pub fn DisplaySettings() -> Element {
     rsx! {
-        FontSizeControl {},
-        ThemeSwitcher {}
+        div { class: "display-setting",
+            FontSizeControl {}
+            ThemeSwitcher {}
+        }
     }
 }
