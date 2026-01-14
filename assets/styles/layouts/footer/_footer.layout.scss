@@ -6,4 +6,24 @@
     temp
     */
     border: 1px solid green;
+    &-resources {
+        display: grid;
+        justify-content: center;
+    }
+    &-languages {
+        display: grid;
+        justify-content: center;
+    }
+    &-copyright {
+        display: grid;
+        justify-content: center;
+    }
+    &-community {
+        display: grid;
+        justify-content: center;
+    }
+    &-brand {
+        display: grid;
+        justify-content: center;
+    }
 }

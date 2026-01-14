@@ -4,8 +4,6 @@ use dioxus::prelude::*;
 #[component]
 pub fn CommentForm() -> Element {
     rsx! {
-        div {
-            "Comment Form"
-        }
+        textarea { class: "discussion-preview-comment-form", "Comment Form" }
     }
 }

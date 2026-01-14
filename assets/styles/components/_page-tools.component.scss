@@ -1,0 +1,11 @@
+.page-tools {
+    border: 1px solid darkorange;
+    border-radius: 1rem;
+     padding: var(--space-lg);
+    &-actions {
+         padding: var(--space-lg);
+    }
+    &-header {
+         padding: var(--space-lg);
+    }
+}

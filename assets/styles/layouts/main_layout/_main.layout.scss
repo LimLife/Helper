@@ -1,3 +1,8 @@
+@use "./left-sidebar/_left-sidebar.layout.scss";
+@use "./content-area/_content-area.layout.scss";
+@use "./sidebar-right/_sidebar-right.layout.scss";
+
+
 .main-layout {
     display: grid;
     height: 100vh;
