@@ -1,5 +1,6 @@
 .left-sidebar {
     display: flex;
-    border: 1px solid yellow;
     flex-direction: column;
+    background-color: var(--color-bg-element);
+    border-radius: var(--space-2lg);
 }

@@ -1,4 +1,4 @@
-use dioxus::{html::img, prelude::*};
+use dioxus::prelude::*;
 
 use crate::components::assets::images::USER;
 
@@ -6,12 +6,7 @@ use crate::components::assets::images::USER;
 pub fn UserAvatarMenu() -> Element {
     rsx!{
         div { id: "user-avatar-menu", class: "user-avatar-menu",
-            img {
-                src: USER,
-                alt: "user",
-                width: "50px",
-                height: "50px",
-            }
+            img { src: USER, alt: "user" }
         }
     }
 }
