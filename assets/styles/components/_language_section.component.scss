@@ -1,5 +1,9 @@
 .lenguage-section {
     display: block;
+
+    &-content {
+        padding-left: var(--space-2xl);
+    }
 }
 
 .language-header {

@@ -1,8 +1,9 @@
 :root {
     --color-bg-page: #000000;
+    --color-bg-element: #0d0d0d;
     --font-family-base: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
     --font-size-root: 1rem;
-
+    --font-titel-size: 1.5rem;
     --color-text-primary: #ffffff;
     --color-content-primary: #ddc0c0;
 
@@ -27,8 +28,20 @@
     --transition-fast: 150ms ease;
     --transition-base: 250ms ease;
     --transition-slow: 400ms ease;
+
+    /*
+        Size-Images
+    */
+
+    --image--size-2xl: 1.5rem;
+    --image--size-4xl: 2.5rem;
+    /*
+        Image Path
+    */
+    --bookmark-icon-path: url("/assets/images/bookmark-white.svg");
 }
-:root[theme='dark'] {
+:root[theme='white'] {
     --color-bg-page: #ffffff;
     --color-text-primary: #000000;
+    --color-bg-element: #0d0d0d;
 }

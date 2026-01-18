@@ -12,9 +12,9 @@ use super::language_content::{
 #[component]
 pub fn LanguageContent() -> Element {
     rsx!{
-        div { 
+        div { class: "lenguage-section-content",
             VersionSelector {}
-            LanguageNavLinks {},
+            LanguageNavLinks {}
         }
     }
 }

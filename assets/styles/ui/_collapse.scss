@@ -34,7 +34,7 @@
     }
     &-content {
         overflow: hidden;
-        padding: 0 12px;
+        /*padding: 0 12px;*/
     }
     &-input[type='checkbox']:checked~&-content-wrapper {
         max-height: 500px;

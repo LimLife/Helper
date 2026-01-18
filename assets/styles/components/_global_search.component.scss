@@ -10,6 +10,12 @@
 .search-input {
     width: 100%;
     text-align: center;
+    border-radius: var(--space-sm);
+    background-color: var(--color-bg-element);
+    color: var(--color-text-primary);
+    &::focus {
+        outline: none;
+    }
 }
 .search-hint {
     position: absolute;

@@ -1,0 +1,6 @@
+.recent-section {
+    display: block;
+    &-item {
+        padding-left: var(--space-lg);
+    }
+}
