@@ -1,0 +1,29 @@
+.user-menu {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+.bookmark-button {
+    display: flex;
+    padding: 0;
+   // mask-image: var(--bookmark-icon-path);
+   img {
+        width: var(--image--size-2xl);
+        height: var(--image--size-2xl);  
+   }
+}
+.history-button {
+    display: flex;
+       img {
+        width: var(--image--size-2xl);
+        height: var(--image--size-2xl);  
+   }
+}
+.user-avatar-menu {
+    display: grid;
+    place-content: center;
+       img {
+        width: var(--image--size-4xl);
+        height: var(--image--size-4xl);  
+   } 
+}

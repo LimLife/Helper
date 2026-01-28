@@ -1,0 +1,10 @@
+.content-area {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-lg);
+    > * {
+        background-color: var(--color-bg-element);
+        border-radius: var(--space-lg);
+        padding: var(--space-lg);
+    }
+}

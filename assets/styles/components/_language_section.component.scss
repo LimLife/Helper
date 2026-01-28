@@ -1,0 +1,21 @@
+.lenguage-section {
+    display: block;
+
+    &-content {
+        padding-left: var(--space-2xl);
+    }
+}
+
+.language-header {
+    display: flex;
+    justify-content: flex-start;
+}
+.language-icon {
+    background-color: transparent;
+}
+.language-title {
+    font-size: var(--font-size-root);
+}
+.expand-arrow {
+    transform: rotate(90deg);
+}

@@ -16,10 +16,12 @@ use super::footer::{
 #[component]
 pub fn Footer() -> Element {
     rsx!{
-        FooterBrand {  },
-        FooterCommunity {},
-        FooterCopyright {},
-        FooterLanguages {},
-        FooterResources {}
+        div { id: "footer", class: "footer",
+            FooterBrand {}
+            FooterCommunity {}
+            FooterCopyright {}
+            FooterLanguages {}
+            FooterResources {}
+        }
     }
 }

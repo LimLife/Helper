@@ -12,8 +12,10 @@ use super::discussion_preview::{
 #[component]
 pub fn DiscussionPreview() -> Element {
     rsx!{
-        CommentForm {},
-        CommentPreview {  }
-        ViewAllCommentsLink {}
+        div { class: "discussion-preview",
+            CommentForm {}
+            CommentPreview {}
+            ViewAllCommentsLink {}
+        }
     }
 }

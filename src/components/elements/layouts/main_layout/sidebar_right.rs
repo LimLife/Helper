@@ -15,10 +15,12 @@ use super::sidebar_right::{
 #[component]
 pub fn SidebarRight() -> Element {
     rsx! {
-       TableOfContents {},
-       PageTools {},
-       DisplaySettings {},
-       DiscussionPreview {},
-       ExternalResources {}
+        div { id: "sidebar-right", class: "sidebar-right",
+            TableOfContents {}
+            PageTools {}
+            DisplaySettings {}
+            DiscussionPreview {}
+            ExternalResources {}
+        }
     }
 }

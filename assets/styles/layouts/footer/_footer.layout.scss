@@ -1,0 +1,25 @@
+.footer{
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    justify-content: center;
+    &-resources {
+        display: grid;
+        justify-content: center;
+    }
+    &-languages {
+        display: grid;
+        justify-content: center;
+    }
+    &-copyright {
+        display: grid;
+        justify-content: center;
+    }
+    &-community {
+        display: grid;
+        justify-content: center;
+    }
+    &-brand {
+        display: grid;
+        justify-content: center;
+    }
+}

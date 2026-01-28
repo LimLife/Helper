@@ -13,8 +13,10 @@ use super::header::{
 #[component]
 pub fn Header()->Element {
     rsx!{
-        Brand{},
-        GlobalSearch {},
-        UserMenu {}
+        header { id: "header", class: "header",
+            Brand {}
+            GlobalSearch {}
+            UserMenu {}
+        }
     }
 }

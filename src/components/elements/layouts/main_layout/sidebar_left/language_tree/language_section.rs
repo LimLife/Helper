@@ -7,11 +7,18 @@ use super::language_section::{
     language_header::LanguageHeader,
     language_content::LanguageContent
 };
-
+use crate::components::elements::ui::collapse::Collapse;
 #[component]
 pub fn LanguageSection()-> Element {
     rsx!{
-        LanguageHeader {  },
-        LanguageContent {  }
+        Collapse {
+            id: "language-section",
+            label: rsx! {
+                LanguageHeader {}
+            },
+            content: rsx! {
+                LanguageContent {}
+            },
+        }
     }
 }

@@ -1,0 +1,33 @@
+.global-search {
+    display: grid;
+    position: relative;
+    align-items: center;
+    display: flex;
+}
+.search {
+    flex: 0.95;
+}
+.search-input {
+    width: 100%;
+    text-align: center;
+    border-radius: var(--space-sm);
+    background-color: var(--color-bg-element);
+    color: var(--color-text-primary);
+    &::focus {
+        outline: none;
+    }
+}
+.search-hint {
+    position: absolute;
+    right: 4.75em;
+    pointer-events: none;
+    top: 50%;
+    color: #888;
+    transform: translateY(-50%);
+}
+.search-result {
+    display: none;
+}
+.search-shortcut {
+    display: none;
+}

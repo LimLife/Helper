@@ -12,8 +12,10 @@ use super::language_header::{
 #[component]
 pub fn LanguageHeader() -> Element {
     rsx!{
-        ExpandArrow {  },
-        LanguageIcon { },
-        LanguageTitle {}
+        div { id: "language-header", class: "language-header",
+            LanguageIcon {}
+            LanguageTitle {}
+            ExpandArrow {}
+        }
     }
 }

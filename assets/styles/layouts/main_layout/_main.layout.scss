@@ -1,0 +1,12 @@
+@use "./left-sidebar/_left-sidebar.layout.scss";
+@use "./content-area/_content-area.layout.scss";
+@use "./sidebar-right/_sidebar-right.layout.scss";
+
+
+.main-layout {
+    display: grid;
+    height: 100vh;
+    grid-template-columns: 1fr 4fr 1fr;
+    margin: var(--space-2xl);
+    gap: var(--space-2lg);
+}

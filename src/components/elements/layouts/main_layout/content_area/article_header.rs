@@ -13,8 +13,10 @@ use super::article_header::{
 #[component]
 pub fn ArticleHeader() -> Element {
     rsx!{
-        ArticleDescription {  },
-        ArticleTitle {},
-        VersionSwitcher {}
+        h1 { id: "artical-header", class: "artical-header",
+            ArticleDescription {}
+            ArticleTitle {}
+            VersionSwitcher {}
+        }
     }
 }

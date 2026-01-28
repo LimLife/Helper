@@ -1,0 +1,7 @@
+.code-block {
+    display: grid;
+    &-header {
+        display: flex;
+        flex-direction: row;
+    }
+}

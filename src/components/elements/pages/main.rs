@@ -10,10 +10,11 @@ use crate::components::elements::layouts::{
 
 #[component]
 pub fn Main() -> Element {
-   
    rsx!{
-    Header {},
-    MainLayout {},
-    Footer {}
-   }
+    div { id: "main-page", class: "main-page",
+        Header {}
+        MainLayout {}
+        Footer {}
+    }
+} 
 }

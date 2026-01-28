@@ -1,0 +1,10 @@
+.sidebar-right {
+    display: flex;
+    flex-direction: column;
+    border-radius: var(--space-2lg);
+    gap: var(--space-lg);
+    > * {
+        background-color: var(--color-bg-element);
+        border-radius: var(--space-2lg);
+    }
+}

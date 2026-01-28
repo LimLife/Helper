@@ -8,18 +8,16 @@ use dioxus::prelude::*;
 use super::article_body::{
     section::Section,
     code_block::CodeBlock,
-    info_box::InfoBox,
-    warning_box::WarningBox,
     grid::Grid
 };
 
 #[component]
 pub fn ArticleBody() -> Element {
     rsx!{
-        Section {  },
-        CodeBlock {  },
-        InfoBox {},
-        WarningBox {},
-        Grid {}
+        article { id: "artical-main-content", class: "artical-body",
+            Section {}
+            CodeBlock {}
+            Grid {}
+        }
     }
 }

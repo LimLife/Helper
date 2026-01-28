@@ -4,6 +4,8 @@ use dioxus::prelude::*;
 #[component]
 pub fn BreadcrumbItem() -> Element {
     rsx!{
-        div { "Breadcrumb Item" }
+        li { class: "breadcrumbs-item",
+            Link { to: "#", "Breadcrumb Item" }
+        }
     }
 }

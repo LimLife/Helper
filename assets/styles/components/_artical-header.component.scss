@@ -1,0 +1,11 @@
+.artical-header {
+    display: grid;
+    grid-template-rows: auto auto;
+    grid-template-columns: auto;
+    grid-auto-flow: rows;
+
+    font-size: var(--font-size-root);
+    &-description {
+        grid-column: span 2;
+    }
+}
