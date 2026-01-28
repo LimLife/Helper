@@ -5,8 +5,14 @@
     padding: var(--space-zero);
     list-style: none;
     gap: var(--space-sm);
+    background-color: var(--color-bg-page);
     &-item {
         display: flex;
+        a {
+            text-decoration: none;
+            color: var(--color-text-primary);
+            font-size: var(--font-size-root);
+        }
     }
 
 }

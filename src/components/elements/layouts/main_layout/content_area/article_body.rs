@@ -8,8 +8,6 @@ use dioxus::prelude::*;
 use super::article_body::{
     section::Section,
     code_block::CodeBlock,
-    info_box::InfoBox,
-    warning_box::WarningBox,
     grid::Grid
 };
 
@@ -19,8 +17,6 @@ pub fn ArticleBody() -> Element {
         article { id: "artical-main-content", class: "artical-body",
             Section {}
             CodeBlock {}
-            InfoBox {}
-            WarningBox {}
             Grid {}
         }
     }
