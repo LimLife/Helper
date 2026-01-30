@@ -142,6 +142,16 @@
 .lenguage-section-content {
   padding-left: var(--space-2xl);
 }
+.lenguage-section-selector {
+  color: var(--color-text-primary);
+  border: var(--ounline-color-white) 1px solid;
+  background-color: var(--color-bg-element);
+  border-radius: var(--space-sm);
+  width: -moz-max-content;
+  width: max-content;
+  margin-bottom: var(--space-sm);
+  font-size: var(--space-sm);
+}
 
 .language-header {
   display: flex;
@@ -294,42 +304,46 @@
   margin: var(--space-sm) 0;
   overflow: hidden;
   font-family: var(--font-family-base);
-  /*
-  &-input[type="checkbox"]:checked + &-label::after {
-      transform: rotate(90deg);
-  }
-  */
 }
-.ui_collapse-input[type=checkbox] {
-  display: none;
-}
-.ui_collapse-label {
+
+.ui_collapse-trigger {
+  all: unset;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  width: 100%;
   padding: var(--space-md);
+  font-weight: 600;
   -webkit-user-select: none;
      -moz-user-select: none;
           user-select: none;
-  font-weight: 600;
-  /*
-  &::after {
-      content: ">";
-      transition: var(--transition-very-fast);
-  }
-  */
+  cursor: pointer;
+  color: inherit;
+  background: transparent;
+  border: none;
+  text-align: left;
+  transition: background-color var(--transition-very-fast);
 }
+
+.ui_collapse-trigger:hover,
+.ui_collapse-trigger:focus-visible {
+  background: var(--color-hover, rgba(0, 0, 0, 0.04));
+  outline: none;
+}
+
 .ui_collapse-content-wrapper {
   max-height: 0;
-  transition: max-height 0.3s ease;
   overflow: hidden;
+  transition: max-height 0.15s ease-out;
+  will-change: max-height;
 }
-.ui_collapse-content {
-  overflow: hidden;
-  /*padding: 0 12px;*/
+
+.ui_collapse-content-wrapper.open {
+  max-height: 2000px;
 }
-.ui_collapse-input[type=checkbox]:checked ~ .ui_collapse-content-wrapper {
-  max-height: 500px;
+
+.ui_collapse-content-wrapper > div {
+  padding-top: var(--space-sm);
 }
 
 :root {
@@ -363,6 +377,8 @@
   /*
       Size-Images
   */
+  /* outline*/
+  --ounline-color-white: #fff;
   --image--size-2xl: 1.5rem;
   --image--size-4xl: 2.5rem;
   /*

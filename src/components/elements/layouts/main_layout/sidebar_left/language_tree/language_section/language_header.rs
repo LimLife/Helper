@@ -4,7 +4,7 @@ mod language_title;
 
 use dioxus::prelude::*;
 use super::language_header::{
-    expand_arrow::ExpandArrow,
+   // expand_arrow::ExpandArrow,
     language_icon::LanguageIcon,
     language_title::LanguageTitle
 };
@@ -15,7 +15,7 @@ pub fn LanguageHeader() -> Element {
         div { id: "language-header", class: "language-header",
             LanguageIcon {}
             LanguageTitle {}
-            ExpandArrow {}
+                // ExpandArrow {}
         }
     }
 }
