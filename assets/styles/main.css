@@ -150,7 +150,7 @@
   width: -moz-max-content;
   width: max-content;
   margin-bottom: var(--space-sm);
-  font-size: var(--space-sm);
+  font-size: var(--font-size-root);
 }
 
 .language-header {
@@ -406,6 +406,11 @@ body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+
+a {
+  text-decoration: none;
+  color: var(--color-text-primary);
 }
 
 ol, ul {
