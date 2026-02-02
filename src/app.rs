@@ -1,4 +1,3 @@
-use dioxus::prelude::*;
 use crate::components::elements::app::App;
 
 pub fn set_app() {
@@ -11,4 +10,7 @@ pub fn set_app() {
     
      dioxus::launch(App);
 }
+
+
+
 
