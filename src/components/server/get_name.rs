@@ -1,6 +1,9 @@
+#[cfg(feature = "server")]
 use dioxus::prelude::*;
 
-#[get("/api/name")]
+
+#[cfg(feature = "server")]
+#[server]
 pub async fn get_name() -> Result<String, ServerFnError> {
     Ok("LimLife".to_string())
 }
