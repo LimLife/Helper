@@ -3,6 +3,15 @@
 
     &-content {
         padding-left: var(--space-2xl);
+        &-language-nav-group {
+            ul {
+                padding-left: 1rem;
+            }
+        }
+        &-language-nav-link{
+            border-left: 1px solid gray;
+            padding-left: 0.5rem;
+        }
     }
     &-selector {
         color: var(--color-text-primary);

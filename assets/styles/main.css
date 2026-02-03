@@ -142,6 +142,13 @@
 .lenguage-section-content {
   padding-left: var(--space-2xl);
 }
+.lenguage-section-content-language-nav-group ul {
+  padding-left: 1rem;
+}
+.lenguage-section-content-language-nav-link {
+  border-left: 1px solid gray;
+  padding-left: 0.5rem;
+}
 .lenguage-section-selector {
   color: var(--color-text-primary);
   border: var(--ounline-color-white) 1px solid;
@@ -323,6 +330,9 @@
   border: none;
   text-align: left;
   transition: background-color var(--transition-very-fast);
+  margin-bottom: 0;
+  margin-top: 0;
+  padding-top: 0;
 }
 
 .ui_collapse-trigger:hover,
@@ -340,6 +350,10 @@
 
 .ui_collapse-content-wrapper.open {
   max-height: 2000px;
+}
+.ui_collapse-content-wrapper.open ul {
+  margin-top: 0;
+  margin-bottom: 0;
 }
 
 .ui_collapse-content-wrapper > div {
