@@ -19,6 +19,9 @@
     border: none;
     text-align: left;
     transition: background-color var(--transition-very-fast);
+    margin-bottom: 0;
+    margin-top: 0;
+    padding-top: 0;
 }
 
 .ui_collapse-trigger:hover,
@@ -37,6 +40,10 @@
 
 .ui_collapse-content-wrapper.open {
     max-height: 2000px;
+    ul {
+        margin-top: 0;
+        margin-bottom: 0;
+    }
 }
 
 .ui_collapse-content-wrapper > div {
