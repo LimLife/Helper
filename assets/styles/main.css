@@ -149,16 +149,6 @@
   border-left: 1px solid gray;
   padding-left: 0.5rem;
 }
-.lenguage-section-selector {
-  color: var(--color-text-primary);
-  border: var(--ounline-color-white) 1px solid;
-  background-color: var(--color-bg-element);
-  border-radius: var(--space-sm);
-  width: -moz-max-content;
-  width: max-content;
-  margin-bottom: var(--space-sm);
-  font-size: var(--font-size-root);
-}
 
 .language-header {
   display: flex;
@@ -365,6 +355,17 @@
 
 .ui_collapse-content-wrapper > div {
   padding-top: var(--space-sm);
+}
+
+.selector {
+  color: var(--color-text-primary);
+  border: var(--ounline-color-white) 1px solid;
+  background-color: var(--color-bg-element);
+  border-radius: var(--space-sm);
+  width: -moz-max-content;
+  width: max-content;
+  margin-bottom: var(--space-sm);
+  font-size: var(--font-size-root);
 }
 
 :root {
