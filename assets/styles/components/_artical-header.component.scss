@@ -1,11 +1,18 @@
 .artical-header {
     display: grid;
-    grid-template-rows: auto auto;
-    grid-template-columns: auto;
-    grid-auto-flow: rows;
+    grid-template-columns: 1fr 3fr;
+    align-items: end;
 
     font-size: var(--font-size-root);
-    &-description {
-        grid-column: span 2;
+    &-text {
+        display: flex;
+        flex-direction: column;
+        gap: 0.25rem;
+    }
+    > .selector {
+        margin-bottom: 0;
+    }
+    &-title { 
+        margin: 0;
     }
 }

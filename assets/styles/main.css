@@ -233,13 +233,20 @@
 
 .artical-header {
   display: grid;
-  grid-template-rows: auto auto;
-  grid-template-columns: auto;
-  grid-auto-flow: rows;
+  grid-template-columns: 1fr 3fr;
+  align-items: end;
   font-size: var(--font-size-root);
 }
-.artical-header-description {
-  grid-column: span 2;
+.artical-header-text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+.artical-header > .selector {
+  margin-bottom: 0;
+}
+.artical-header-title {
+  margin: 0;
 }
 
 .article-navigation {
