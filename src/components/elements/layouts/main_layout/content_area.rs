@@ -5,7 +5,7 @@ mod article_navigation;
 use dioxus::prelude::*;
 
 use super::content_area::{
-    breadcrumbs::Breadcrumb,
+    breadcrumbs::BreadcrumbView,
     article_header::ArticleHeader,
     article_body::ArticleBody,
     article_navigation::ArticleNavigation
@@ -15,7 +15,7 @@ use super::content_area::{
 pub fn ContentArea() -> Element {
     rsx!{
         div { id: "content-area", class: "content-area",
-            Breadcrumb {}
+            BreadcrumbView {}
             ArticleHeader {}
             ArticleBody {}
             ArticleNavigation {}

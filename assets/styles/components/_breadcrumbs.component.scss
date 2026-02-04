@@ -13,6 +13,13 @@
             color: var(--color-text-primary);
             font-size: var(--font-size-root);
         }
-    }
 
+    }
+    &-item::after {
+        content: "/";
+        margin-left: 0.5rem;
+    }
+    &-item:last-child::after {
+        content: "";
+    }
 }

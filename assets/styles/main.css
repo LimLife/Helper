@@ -233,6 +233,13 @@
   color: var(--color-text-primary);
   font-size: var(--font-size-root);
 }
+.breadcrumbs-item::after {
+  content: "/";
+  margin-left: 0.5rem;
+}
+.breadcrumbs-item:last-child::after {
+  content: "";
+}
 
 .artical-header {
   display: grid;
