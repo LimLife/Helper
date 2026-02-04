@@ -49,8 +49,6 @@ pub fn NavGroupItem(group: NavGroup, #[props(default = 0)]level:u32) -> Element 
     let id_name =format!("{}-{}", group.name.clone(), level);
     rsx!{
         Collapse {
-            //style: format!("padding-left:{level}rem;"),
-            //key: "{group.name.clone()}-{level}",
             id: id_name,
             label: rsx! {
                 span { {group.name} }
