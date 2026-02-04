@@ -11,7 +11,7 @@ use super::section::{
 #[component]
 pub fn Section()->Element{
     rsx!{
-        p {
+        section {
             Paragraph {}
             SectionTitle {}
         }

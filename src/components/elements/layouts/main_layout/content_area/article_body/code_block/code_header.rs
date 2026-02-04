@@ -11,7 +11,7 @@ use super::code_header::{
 #[component]
 pub fn CodeHeader() -> Element {
     rsx! {
-        div { class: "code-block-header",
+        header { class: "code-block-header",
             LanguageBadge {}
             CopyButton {}
         }
