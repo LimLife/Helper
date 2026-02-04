@@ -8,7 +8,7 @@ use super::warning_box::WarningBox;
 #[component]
 pub fn Grid()->Element{
     rsx!{
-        div { class: "artical-body-grid-wraper",
+        section { class: "artical-body-grid-wraper",
             DataTypeCard {}
             InfoBox {}
             WarningBox {}

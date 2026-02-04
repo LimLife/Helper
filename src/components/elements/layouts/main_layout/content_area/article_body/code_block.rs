@@ -11,7 +11,7 @@ use super::code_block::{
 #[component]
 pub fn CodeBlock()->Element{
     rsx!{
-        div { id: "code-block", class: "code-block",
+        section { id: "code-block", class: "code-block",
             CodeHeader {}
             CodeContent {}
         }
