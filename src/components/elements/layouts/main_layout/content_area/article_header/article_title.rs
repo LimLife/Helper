@@ -4,6 +4,6 @@ use dioxus::prelude::*;
 #[component]
 pub fn ArticleTitle() -> Element{
     rsx!{
-        div { "Article Title" }
+        h2 { class: "artical-header-title", "Rust && Types" }
     }
 }
