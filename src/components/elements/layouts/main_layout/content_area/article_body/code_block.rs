@@ -1,6 +1,6 @@
 mod code_content;
 mod code_header;
-
+mod code_nav;
 
 use dioxus::prelude::*;
 use super::code_block::{
