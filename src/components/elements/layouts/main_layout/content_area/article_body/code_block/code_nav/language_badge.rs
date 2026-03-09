@@ -4,6 +4,6 @@ use dioxus::prelude::*;
 #[component]
 pub fn LanguageBadge() -> Element {
     rsx! {
-        div { "Language Badge" }
+        span { class: "code-block-nav-badge", "Language Badge" }
     }
 }
