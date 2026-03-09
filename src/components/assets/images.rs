@@ -5,3 +5,4 @@ pub const PROGRAMMING_LANGUAGE: Asset = asset!("/assets/images/pl_empty.png");
 pub const BOOKMARK: Asset = asset!("/assets/images/bookmark-white.svg");
 pub const HISTORY: Asset = asset!("/assets/images/history.svg");
 pub const APP: Asset = asset!("/assets/images/app.svg");
+pub const COPY: Asset = asset!("/assets/images/copy.svg");
