@@ -1,19 +1,19 @@
-mod table_of_contents;
-mod page_tools;
-mod display_settings;
 mod discussion_preview;
+mod display_settings;
 mod external_resources;
+mod page_tools;
+mod table_of_contents;
 use dioxus::prelude::*;
 
 use super::sidebar_right::{
+    discussion_preview::DiscussionPreview, display_settings::DisplaySettings,
+    external_resources::ExternalResources, page_tools::PageTools,
     table_of_contents::TableOfContents,
-    page_tools::PageTools,
-    display_settings::DisplaySettings,
-    discussion_preview::DiscussionPreview,
-    external_resources::ExternalResources
 };
+use shared::manifesto::NodeMeta;
+
 #[component]
-pub fn SidebarRight() -> Element {
+pub fn SidebarRight(node_right: Signal<Vec<NodeMeta>>) -> Element {
     rsx! {
         div { id: "sidebar-right", class: "sidebar-right",
             TableOfContents {}

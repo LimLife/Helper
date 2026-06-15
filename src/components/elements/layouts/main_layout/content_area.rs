@@ -1,24 +1,11 @@
-mod breadcrumbs;
-mod article_header;
-mod article_body;
-mod article_navigation;
 use dioxus::prelude::*;
 
-use super::content_area::{
-    breadcrumbs::BreadcrumbView,
-    article_header::ArticleHeader,
-    article_body::ArticleBody,
-    article_navigation::ArticleNavigation
-};
-
+use shared::manifesto::NodeMeta;
 #[component]
-pub fn ContentArea() -> Element {
-    rsx!{
+pub fn ContentArea(node_contnet: Signal<Vec<NodeMeta>>) -> Element {
+    rsx! {
         div { id: "content-area", class: "content-area",
-            BreadcrumbView {}
-            ArticleHeader {}
-            ArticleBody {}
-            ArticleNavigation {}
+
         }
     }
 }
