@@ -26,10 +26,9 @@
 
 .ui_collapse-trigger:hover,
 .ui_collapse-trigger:focus-visible {
-    background: var(--color-hover, rgba(0,0,0,0.04));
+    background: var(--color-hover, rgba(0, 0, 0, 0.04));
     outline: none;
 }
-
 
 .ui_collapse-content-wrapper {
     max-height: 0;
@@ -40,13 +39,13 @@
 
 .ui_collapse-content-wrapper.open {
     max-height: 2000px;
-    ul {
-        margin-top: 0;
-        margin-bottom: 0;
-    }
+}
+.ui_collapse-content-wrapper.open ul {
+    margin-top: 0;
+    margin-bottom: 0;
 }
 
 .ui_collapse-content-wrapper > div {
-   //padding: var(--space-md);
+    //padding: var(--space-md);
     padding-top: var(--space-sm);
 }
