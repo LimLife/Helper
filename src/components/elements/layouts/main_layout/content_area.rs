@@ -1,11 +1,10 @@
 use dioxus::prelude::*;
 
-use shared::manifesto::NodeMeta;
 #[component]
-pub fn ContentArea(node_contnet: Signal<Vec<NodeMeta>>) -> Element {
+pub fn ContentArea(children: Element) -> Element {
     rsx! {
         div { id: "content-area", class: "content-area",
-
+           {children}
         }
     }
 }

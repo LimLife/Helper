@@ -5,10 +5,10 @@ use dioxus::prelude::*;
 use shared::manifesto::Block;
 
 #[component]
-pub fn ContentRender(node_block: Signal<Vec<Block>>) -> Element {
-    let blocks = node_block.read();
+pub fn RenderCoomponent(node_block: Signal<Vec<Block>>) -> Element {
+    let bloks = node_block.read();
     rsx! {
-            for node in blocks.iter() {
+            for node in bloks.iter() {
                 match node {
                     Block::Code(code_data)=> rsx! {
                         CodeBlock { code:code_data.clone() }

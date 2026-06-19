@@ -1,95 +1,151 @@
-use crate::components::shared::card_type_date::{CardDate, CardTypeDate};
+use std::collections::{HashMap, HashSet};
+
 use shared::{
-    manifesto::{Article, ArticleBody, NodeMeta, NodeType},
-    new_type_id::NodeMetaID,
+    manifesto::{NodeMeta, NodeType},
+    new_type_id::{ArticleID, NodeMetaID},
+    store::SectionStore,
 };
 
-pub fn nodeVec() -> Vec<NodeMeta> {
-    let article_data = vec![
-        Article::new(String::from("Aticle-1"), String::from("You-1")),
-        Article::new(String::from("Aticle-2"), String::from("You-2")),
-        Article::new(String::from("Aticle-3"), String::from("You-3")),
-        Article::new(String::from("Aticle-4"), String::from("You-4")),
-        Article::new(String::from("Aticle-5"), String::from("You-5")),
-        Article::new(String::from("Aticle-6"), String::from("You-6")),
-    ];
-    let article_body = vec![
-        ArticleBody::new(article_data[0].id),
-        ArticleBody::new(article_data[1].id),
-        ArticleBody::new(article_data[2].id),
-        ArticleBody::new(article_data[3].id),
-        ArticleBody::new(article_data[4].id),
-        ArticleBody::new(article_data[5].id),
-    ];
-    let node_pull = vec![
+pub fn fake_section_store() -> SectionStore {
+    let mut store = SectionStore::default();
+
+    // Root sections
+    let rust_id = NodeMetaID::new();
+    let dioxus_id = NodeMetaID::new();
+
+    // Nested section
+    let memory_id = NodeMetaID::new();
+
+    // Articles
+    let ownership_id = NodeMetaID::new();
+    let borrow_id = NodeMetaID::new();
+    let signals_id = NodeMetaID::new();
+
+    let ownership_article = ArticleID::new();
+    let borrow_article = ArticleID::new();
+    let signals_article = ArticleID::new();
+
+    // --------------------------
+    // ROOTS
+    // --------------------------
+
+    store.root = vec![rust_id, dioxus_id];
+
+    // --------------------------
+    // NODES
+    // --------------------------
+
+    store.nodes.insert(
+        rust_id,
         NodeMeta {
-            id: NodeMetaID::new(),
+            id: rust_id,
             parent_id: None,
             sort_order: 0,
-            description: Some(String::from("Tets-1")),
-            has_children: true,
+            title: "Rust".into(),
+            description: Some("Rust language".into()),
             icon: None,
-            title: String::from("Tets-1"),
+            has_children: true,
             type_node: NodeType::Section,
         },
+    );
+
+    store.nodes.insert(
+        dioxus_id,
         NodeMeta {
-            id: NodeMetaID::new(),
+            id: dioxus_id,
             parent_id: None,
             sort_order: 1,
-            description: Some(String::from("Tets-2")),
-            has_children: true,
+            title: "Dioxus".into(),
+            description: Some("Dioxus framework".into()),
             icon: None,
-            title: String::from("Tets-2"),
+            has_children: true,
             type_node: NodeType::Section,
         },
-        NodeMeta {
-            id: NodeMetaID::new(),
-            parent_id: None,
-            sort_order: 2,
-            description: Some(String::from("Tets-3")),
-            has_children: true,
-            icon: None,
-            title: String::from("Tets-3"),
-            type_node: NodeType::Article {
-                artical_id: article_body[0].article_id,
-            },
-        },
-        NodeMeta {
-            id: NodeMetaID::new(),
-            parent_id: None,
-            sort_order: 3,
-            description: Some(String::from("Tets-4")),
-            has_children: true,
-            icon: None,
-            title: String::from("Tets-4"),
-            type_node: NodeType::Article {
-                artical_id: article_body[1].article_id,
-            },
-        },
-    ];
-    node_pull
-}
+    );
 
-pub fn cards() -> Vec<CardDate> {
-    let card_types = vec![CardDate {
-        label: "Frontend".to_string(),
-        typs: Some(vec![
-            CardTypeDate {
-                type_name: "React".to_string(),
-                type_description: "UI library for building interactive interfaces".to_string(),
-                code: None,
+    store.nodes.insert(
+        memory_id,
+        NodeMeta {
+            id: memory_id,
+            parent_id: Some(rust_id),
+            sort_order: 0,
+            title: "Memory".into(),
+            description: None,
+            icon: None,
+            has_children: true,
+            type_node: NodeType::Section,
+        },
+    );
+
+    store.nodes.insert(
+        ownership_id,
+        NodeMeta {
+            id: ownership_id,
+            parent_id: Some(memory_id),
+            sort_order: 0,
+            title: "Ownership".into(),
+            description: None,
+            icon: None,
+            has_children: false,
+            type_node: NodeType::Article {
+                artical_id: ownership_article,
             },
-            CardTypeDate {
-                type_name: "Dioxus".to_string(),
-                type_description: "Rust-based UI framework".to_string(),
-                code: None,
+        },
+    );
+
+    store.nodes.insert(
+        borrow_id,
+        NodeMeta {
+            id: borrow_id,
+            parent_id: Some(memory_id),
+            sort_order: 1,
+            title: "Borrow Checker".into(),
+            description: None,
+            icon: None,
+            has_children: false,
+            type_node: NodeType::Article {
+                artical_id: borrow_article,
             },
-            CardTypeDate {
-                type_name: "Vue".to_string(),
-                type_description: "Progressive JavaScript framework".to_string(),
-                code: None,
+        },
+    );
+
+    store.nodes.insert(
+        signals_id,
+        NodeMeta {
+            id: signals_id,
+            parent_id: Some(dioxus_id),
+            sort_order: 0,
+            title: "Signals".into(),
+            description: None,
+            icon: None,
+            has_children: false,
+            type_node: NodeType::Article {
+                artical_id: signals_article,
             },
-        ]),
-    }];
-    card_types
+        },
+    );
+
+    // --------------------------
+    // CHILDREN
+    // --------------------------
+
+    store.children.insert(rust_id, vec![memory_id]);
+
+    store
+        .children
+        .insert(memory_id, vec![ownership_id, borrow_id]);
+
+    store.children.insert(dioxus_id, vec![signals_id]);
+
+    // --------------------------
+    // LOADED
+    // --------------------------
+
+    store.loaded = HashSet::from([rust_id, dioxus_id, memory_id]);
+
+    // Для тестов можно раскрыть Rust сразу
+
+    store.expand.insert(rust_id);
+
+    store
 }
