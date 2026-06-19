@@ -12,7 +12,7 @@ tokio = { version = "1.49.0",optional = true, features = ["macros", "rt-multi-th
 sqlx = { version = "0.8", optional = true, features = ["runtime-tokio","postgres","macros"]}
 #My lib
 shared = {path = "./shared"}
-uuid = {version = "1.23.2", features = ["v4"]}
+uuid = {version = "1.23.2", features = ["v4", "serde", "js"]}
 
 
 [features]
