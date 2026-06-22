@@ -67,7 +67,9 @@ impl SectionStore {
         self.nodes
             .get(&node_id)
             .and_then(|node| match node.type_node {
-                NodeType::Article { artical_id } => Some(artical_id),
+                NodeType::Article {
+                    article_id: artical_id,
+                } => Some(artical_id),
                 _ => None,
             })
     }
@@ -143,5 +145,9 @@ impl ArticleStore {
     pub fn current_body(&self) -> Option<&ArticleBody> {
         let id = self.current?;
         self.bodies.get(&id)
+    }
+    pub fn current_article(&self) -> Option<&Article> {
+        let id = self.current?;
+        self.articles.get(&id)
     }
 }

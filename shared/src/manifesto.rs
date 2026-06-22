@@ -15,7 +15,7 @@ pub enum NodeType {
     #[default]
     Section,
     Article {
-        artical_id: ArticleID,
+        article_id: ArticleID,
     },
 }
 
@@ -97,7 +97,4 @@ pub enum Block {
     Warning(WarningData),
     Section(SectionData),
     Info(InfoData),
-    // Breadcrum(BreadcrumbData),
-    // ArticleNavigation(ArticleNavigationData),
-    // ArticleHeader(ArticleHeaderData),
 }

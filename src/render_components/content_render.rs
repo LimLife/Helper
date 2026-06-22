@@ -2,16 +2,15 @@ use crate::components::elements::shared_elements::{
     code_block::CodeBlock, info_box::InfoBox, section::SectionText, warning_box::WarningBox,
 };
 use dioxus::prelude::*;
-use shared::manifesto::Block;
+use shared::manifesto::{Block, Content};
 
 #[component]
-pub fn RenderCoomponent(node_block: Signal<Vec<Block>>) -> Element {
-    let bloks = node_block.read();
+pub fn RenderCoomponent(node_block: Vec<Content>) -> Element {
     rsx! {
-            for node in bloks.iter() {
-                match node {
+            for node in node_block.iter() {
+                match &node.block {
                     Block::Code(code_data)=> rsx! {
-                        CodeBlock { code:code_data.clone() }
+                        CodeBlock {code:code_data.clone() }
                     },
                     Block::Info(info_data_c) => rsx! {
                         InfoBox { info_block: info_data_c.clone() }
