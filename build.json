@@ -1,0 +1,6 @@
+{
+  "scripts": {
+    "build-sass": "sass assets/styles/main.scss assets/styles/main.css",
+    "watch-css": "sass --watch assets/styles/main.scss assets/styles/main.css"
+  }
+}
