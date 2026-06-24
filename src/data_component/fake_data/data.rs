@@ -1,4 +1,4 @@
-use std::collections::{HashMap, HashSet};
+use std::collections::HashSet;
 
 use shared::{
     data_block::{CodeData, InfoData, SectionData, WarningData},
@@ -6,11 +6,8 @@ use shared::{
     new_type_id::{ArticleID, ContentID, NodeMetaID},
     store::{ArticleStore, SectionStore},
 };
-pub struct FakeData {
-    pub section_store: SectionStore,
-    pub article_store: ArticleStore,
-}
-pub fn fake_data() -> Vec<(SectionStore, ArticleStore)> {
+
+pub fn fake_data() -> (SectionStore, ArticleStore) {
     let mut store_art = ArticleStore::default();
 
     // --------------------------
@@ -122,7 +119,7 @@ pub fn fake_data() -> Vec<(SectionStore, ArticleStore)> {
 
     // Открываем первую статью по умолчанию
 
-    store_art.open(article1.id);
+    // store_art.open(article1.id);
 
     let mut store_sec = SectionStore::default();
 
@@ -137,10 +134,6 @@ pub fn fake_data() -> Vec<(SectionStore, ArticleStore)> {
     let ownership_id = NodeMetaID::new();
     let borrow_id = NodeMetaID::new();
     let signals_id = NodeMetaID::new();
-
-    let ownership_article = ArticleID::new();
-    let borrow_article = ArticleID::new();
-    let signals_article = ArticleID::new();
 
     // --------------------------
     // ROOTS
@@ -205,7 +198,7 @@ pub fn fake_data() -> Vec<(SectionStore, ArticleStore)> {
             icon: None,
             has_children: false,
             type_node: NodeType::Article {
-                article_id: ownership_article,
+                article_id: article1.id,
             },
         },
     );
@@ -221,7 +214,7 @@ pub fn fake_data() -> Vec<(SectionStore, ArticleStore)> {
             icon: None,
             has_children: false,
             type_node: NodeType::Article {
-                article_id: borrow_article,
+                article_id: article2.id,
             },
         },
     );
@@ -237,7 +230,7 @@ pub fn fake_data() -> Vec<(SectionStore, ArticleStore)> {
             icon: None,
             has_children: false,
             type_node: NodeType::Article {
-                article_id: signals_article,
+                article_id: article3.id,
             },
         },
     );
@@ -264,7 +257,7 @@ pub fn fake_data() -> Vec<(SectionStore, ArticleStore)> {
 
     //store.expand.insert(rust_id);
 
-    vec![(store_sec, store_art)]
+    (store_sec, store_art)
 }
 pub fn fake_section_store() -> SectionStore {
     let mut store_sec = SectionStore::default();

@@ -31,6 +31,9 @@ impl SectionStore {
         self.expand.clear();
         self.selected = None;
     }
+    pub fn is_root(&self) -> bool {
+        self.root.is_empty()
+    }
     pub fn init_root(&mut self, nodes: Vec<NodeMeta>) {
         self.root.clear();
 
