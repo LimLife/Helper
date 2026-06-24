@@ -1,6 +1,8 @@
 use dioxus::prelude::*;
 
-use crate::components::elements::ui::collapse_list::CollapseList;
+use crate::{
+    components::elements::ui::collapse_list::CollapseList, data_component::cotent_loader::Loader,
+};
 use shared::{
     manifesto::NodeType,
     new_type_id::NodeMetaID,
@@ -10,6 +12,7 @@ use shared::{
 pub fn Tree(node_id: NodeMetaID, deep: u32) -> Element {
     let store_section = use_context::<Signal<SectionStore>>();
     let mut store_article = use_context::<Signal<ArticleStore>>();
+    let loader = use_context::<Loader>();
     let (node, expand, children) = {
         let store_read = store_section.read();
         let Some(node) = store_read.nodes.get(&node_id) else {
@@ -40,11 +43,14 @@ pub fn Tree(node_id: NodeMetaID, deep: u32) -> Element {
                         div {
                             onclick:
                                 move |_| {
+                                async move {
                                 let mut store = use_context::<Signal<SectionStore>>();
-                                if !store.read().loaded.contains(&node_id){
-                                    //loaded node
+                                if !store.read().is_loaded(node.id.clone()){
+                                    let children = loader.load_children(node.id.clone()).await.unwrap();
+                                    store.write().insert_children(node.id.clone(), children);
                                 }
                                 store.write().toggle_expand(node_id);
+                                }
                             },
                             style: "{padding}",
                             "{node.title}"
@@ -72,8 +78,14 @@ pub fn Tree(node_id: NodeMetaID, deep: u32) -> Element {
 
                     div {
                         class: "tree-article",
-                        onclick: move |_| {
+                        onclick: move |_| { async move {
+                            let mut store = use_context::<Signal<ArticleStore>>();
+                            if !store_article.read().has_article(article.clone()) {
+                                let children = loader.load_article(article).await.unwrap();
+                                store.write().insert_article(children);
+                            }
                             store_article.write().open(article);
+                        }
                         },
                         "{node.title}"
                     }
