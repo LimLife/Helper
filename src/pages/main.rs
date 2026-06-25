@@ -9,13 +9,14 @@ use crate::{
 #[component]
 pub fn Main() -> Element {
     use_effect(move || {
+        let mut store = use_context::<Signal<SectionStore>>();
+        if !store.read().is_root() {
+            return;
+        }
         spawn(async move {
             let loader = use_context::<Loader>();
-            let mut store = use_context::<Signal<SectionStore>>();
-            if store.read().is_root() {
-                let manifest = loader.load_root().await.unwrap();
-                store.write().init_root(manifest);
-            }
+            let manifest = loader.load_root().await.unwrap();
+            store.write().init_root(manifest);
         });
     });
     rsx! {
