@@ -5,6 +5,6 @@ edition = "2024"
 
 
 [dependencies]
-uuid = {version = "1.23.2", features = ["v4", "serde"]}
+uuid = {version = "1.23.2", features = ["v4", "serde", "js"]}
 chrono = {version="0.4", features = ["serde"]}
 serde = { version = "1.0.228", features = ["derive"] }

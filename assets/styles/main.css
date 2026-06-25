@@ -261,9 +261,7 @@
 .article-navigation a {
   text-decoration: none;
   display: inline-block;
-  -webkit-user-select: none;
-     -moz-user-select: none;
-          user-select: none;
+  user-select: none;
   outline: none;
 }
 
@@ -285,7 +283,6 @@
 }
 .code-block-content-code {
   display: flex;
-  min-width: -moz-min-content;
   min-width: min-content;
   min-height: 50px;
   margin: 1rem;
@@ -360,9 +357,7 @@
   width: 100%;
   padding: var(--space-md);
   font-weight: 600;
-  -webkit-user-select: none;
-     -moz-user-select: none;
-          user-select: none;
+  user-select: none;
   cursor: pointer;
   color: inherit;
   background: transparent;
@@ -390,6 +385,7 @@
 .ui_collapse-content-wrapper.open {
   max-height: 2000px;
 }
+
 .ui_collapse-content-wrapper.open ul {
   margin-top: 0;
   margin-bottom: 0;
@@ -404,10 +400,27 @@
   border: var(--ounline-color-white) 1px solid;
   background-color: var(--color-bg-element);
   border-radius: var(--space-sm);
-  width: -moz-max-content;
   width: max-content;
   margin-bottom: var(--space-sm);
   font-size: var(--font-size-root);
+}
+
+.tree-root,
+.tree-node-children {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+}
+
+.tree-node-children {
+  padding-left: 1rem;
+}
+
+.tree-node-trigger {
+  all: unset;
+  cursor: pointer;
+  display: block;
+  width: 100%;
 }
 
 :root {
@@ -484,4 +497,6 @@ ol, ul {
 img {
   max-width: 100%;
   display: block;
-}/*# sourceMappingURL=main.css.map */
+}
+
+/*# sourceMappingURL=main.css.map */
