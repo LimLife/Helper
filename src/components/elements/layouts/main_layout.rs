@@ -1,7 +1,7 @@
 mod content_area;
 pub mod sidebar_left;
 mod sidebar_right;
-mod tree_root;
+use crate::components::elements::shared_elements::tree_root;
 use dioxus::prelude::*;
 
 use super::main_layout::{
