@@ -1,5 +1,5 @@
 mod content_area;
-mod sidebar_left;
+pub mod sidebar_left;
 mod sidebar_right;
 mod tree_root;
 use dioxus::prelude::*;

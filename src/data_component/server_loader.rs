@@ -4,6 +4,9 @@ use shared::{
     new_type_id::{ArticleID, NodeMetaID},
 };
 
+#[cfg(feature = "server")]
+use shared::store::{ArticleStore, SectionStore};
+
 #[server]
 pub async fn server_load_children(parent_id: NodeMetaID) -> Result<Vec<NodeMeta>, ServerFnError> {
     let (section, _): (SectionStore, ArticleStore) =
@@ -42,5 +45,6 @@ pub async fn server_load_article_body(article_id: ArticleID) -> Result<ArticleBo
 
 #[server]
 pub async fn server_load_root() -> Result<Vec<NodeMeta>, ServerFnError> {
-    Ok()
+    let s = vec![NodeMeta::new()];
+    Ok(s)
 }
