@@ -5,6 +5,10 @@ use shared::data_block::ArticleHeaderData;
 #[component]
 pub fn ArticleHeaderEditor(header: ArticleHeaderData) -> Element {
     rsx! {
-        ArticleHeader { header }
+        div {
+            id: "article-header-editor",
+            class: "article-header-editor",
+            ArticleHeader { header }
+        }
     }
 }

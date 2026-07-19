@@ -5,6 +5,10 @@ use shared::data_block::CodeData;
 #[component]
 pub fn CodeEditor(code: CodeData) -> Element {
     rsx! {
-        CodeBlock { code }
+        div {
+           id: "code-editor",
+           class:"code-editor",
+           CodeBlock { code }
+        }
     }
 }

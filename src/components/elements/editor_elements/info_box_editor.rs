@@ -4,6 +4,10 @@ use shared::data_block::InfoData;
 #[component]
 pub fn InfoBoxEditor(info_block: InfoData) -> Element {
     rsx! {
+        div {
+            id: "info-box-editor",
+            class: "info-box-editor",
        InfoBox{info_block}
+        }
     }
 }
