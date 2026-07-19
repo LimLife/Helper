@@ -338,6 +338,16 @@
   padding-left: var(--space-lg);
 }
 
+.main-page {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+}
+
+.admin-page {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+}
+
 .font-size-titel {
   font-size: var(--font-titel-size);
   color: var(--color-text-primary);
