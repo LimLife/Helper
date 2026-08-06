@@ -1,8 +1,11 @@
-use std::collections::{HashMap, HashSet};
+use std::{
+    collections::{HashMap, HashSet},
+    str,
+};
 
 use crate::{
-    manifesto::{Article, ArticleBody, NodeMeta, NodeType},
-    new_type_id::{ArticleID, NodeMetaID},
+    manifesto::{Article, ArticleBody, Block, Content, NodeMeta, NodeType},
+    new_type_id::{ArticleID, ContentID, NodeMetaID},
 };
 
 #[derive(Debug, Default, PartialEq, Eq, Clone)]
@@ -22,6 +25,28 @@ pub struct ArticleStore {
     pub current: Option<ArticleID>,
 }
 
+#[derive(Clone, Default)]
+pub struct EditorStore {
+    pub select_block: Option<ContentID>,
+}
+impl EditorStore {
+    pub fn select(&mut self, contnet_id: ContentID) {
+        self.select_block = Some(contnet_id);
+    }
+    pub fn deselect(&mut self) {
+        self.select_block = None;
+    }
+    pub fn is_select(&self, id: ContentID) -> bool {
+        self.select_block == Some(id)
+    }
+    pub fn toggel(&mut self, id: ContentID) {
+        if self.is_select(id) {
+            self.deselect();
+        } else {
+            self.select(id);
+        }
+    }
+}
 impl SectionStore {
     pub fn clear(&mut self) {
         self.root.clear();
@@ -152,5 +177,24 @@ impl ArticleStore {
     pub fn current_article(&self) -> Option<&Article> {
         let id = self.current?;
         self.articles.get(&id)
+    }
+
+    pub fn current_content(&self, id: ContentID) -> Option<&Content> {
+        let body = self.current_body()?;
+        body.bloks.iter().find(|content| content.id == id)
+    }
+
+    pub fn current_content_mut(&mut self, id: ContentID) -> Option<&mut Content> {
+        let article = self.current()?;
+        let body = self.bodies.get_mut(&article)?;
+        body.bloks.iter_mut().find(|content| content.id == id)
+    }
+
+    pub fn current_block(&self, id: ContentID) -> Option<&Block> {
+        self.current_content(id).map(|block| &block.block)
+    }
+
+    pub fn current_block_mut(&mut self, id: ContentID) -> Option<&mut Block> {
+        self.current_content_mut(id).map(|block| &mut block.block)
     }
 }
