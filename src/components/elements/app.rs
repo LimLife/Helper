@@ -6,9 +6,10 @@ use crate::components::{
     state::navigation::nav_navigation_store::NavigationStore,
 };
 use crate::data_component::{cotent_loader::Loader, fake_data::data::fake_data};
-
+use shared::store::EditorStore;
 #[component]
 pub fn App() -> Element {
+    let editor_store = use_signal(|| EditorStore::default());
     let nav_store = use_signal(|| NavigationStore::default());
     use_context_provider(|| nav_store);
     use_context_provider(|| Loader::new());
@@ -18,6 +19,7 @@ pub fn App() -> Element {
     let store_article = use_signal(|| article_data);
     use_context_provider(|| store_section);
     use_context_provider(|| store_article);
+    use_context_provider(|| editor_store);
     rsx! {
         import_styles {}
 
