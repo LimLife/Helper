@@ -1,10 +1,7 @@
-use std::{
-    collections::{HashMap, HashSet},
-    str,
-};
+use std::collections::{HashMap, HashSet};
 
 use crate::{
-    manifesto::{Article, ArticleBody, Block, Content, NodeMeta, NodeType},
+    manifesto::{Article, ArticleBody, Block, Content, IntoBlock, NodeMeta, NodeType},
     new_type_id::{ArticleID, ContentID, NodeMetaID},
 };
 
@@ -27,17 +24,24 @@ pub struct ArticleStore {
 
 #[derive(Clone, Default)]
 pub struct EditorStore {
-    pub select_block: Option<ContentID>,
+    pub selected: Option<ContentID>,
+    pub drafts: HashMap<ContentID, Block>,
 }
 impl EditorStore {
+    pub fn set_draft<T>(&mut self, id: ContentID, data: T)
+    where
+        T: IntoBlock,
+    {
+        self.drafts.insert(id, data.into_block());
+    }
     pub fn select(&mut self, contnet_id: ContentID) {
-        self.select_block = Some(contnet_id);
+        self.selected = Some(contnet_id);
     }
     pub fn deselect(&mut self) {
-        self.select_block = None;
+        self.selected = None;
     }
     pub fn is_select(&self, id: ContentID) -> bool {
-        self.select_block == Some(id)
+        self.selected == Some(id)
     }
     pub fn toggel(&mut self, id: ContentID) {
         if self.is_select(id) {
@@ -45,6 +49,19 @@ impl EditorStore {
         } else {
             self.select(id);
         }
+    }
+
+    pub fn draft(&self, id: ContentID) -> Option<&Block> {
+        self.drafts.get(&id)
+    }
+    pub fn has_draft(&self, id: ContentID) -> bool {
+        self.drafts.contains_key(&id)
+    }
+    pub fn discard_draft(&mut self, id: ContentID) {
+        self.drafts.remove(&id);
+    }
+    pub fn clear_draft(&mut self) {
+        self.drafts.clear();
     }
 }
 impl SectionStore {

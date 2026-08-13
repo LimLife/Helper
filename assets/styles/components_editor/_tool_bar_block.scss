@@ -1,0 +1,10 @@
+.tool-bar-block {
+    display: grid;
+    justify-self: start;
+    grid-template-columns: repeat(7,auto);
+    gap: var(--space-md);
+    li {
+        list-style: none;
+        display: grid;
+    }
+}
