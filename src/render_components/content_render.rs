@@ -13,7 +13,7 @@ pub fn RenderCoomponent(node_block: Vec<Content>) -> Element {
                         CodeBlock {code:code_data.clone() }
                     },
                     Block::Info(info_data_c) => rsx! {
-                        InfoBox { info_block: info_data_c.clone() }
+                        InfoBox { info_data: info_data_c.clone() }
                     },
                     Block::Section(section_data)=> rsx!{
                         SectionText {section_data:section_data.clone()}

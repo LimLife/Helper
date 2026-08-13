@@ -98,3 +98,28 @@ pub enum Block {
     Section(SectionData),
     Info(InfoData),
 }
+
+pub trait IntoBlock {
+    fn into_block(self) -> Block;
+}
+
+impl IntoBlock for CodeData {
+    fn into_block(self) -> Block {
+        Block::Code(self)
+    }
+}
+impl IntoBlock for InfoData {
+    fn into_block(self) -> Block {
+        Block::Info(self)
+    }
+}
+impl IntoBlock for SectionData {
+    fn into_block(self) -> Block {
+        Block::Section(self)
+    }
+}
+impl IntoBlock for WarningData {
+    fn into_block(self) -> Block {
+        Block::Warning(self)
+    }
+}

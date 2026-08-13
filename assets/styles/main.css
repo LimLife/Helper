@@ -517,4 +517,19 @@ img {
   display: block;
 }
 
+.editor-frame {
+  display: grid;
+}
+
+.tool-bar-block {
+  display: grid;
+  justify-self: start;
+  grid-template-columns: repeat(7, auto);
+  gap: var(--space-md);
+}
+.tool-bar-block li {
+  list-style: none;
+  display: grid;
+}
+
 /*# sourceMappingURL=main.css.map */
