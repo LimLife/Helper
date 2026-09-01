@@ -50,7 +50,7 @@ pub fn EditorFrame(content_id: ContentID, preview: Element) -> Element {
         div {
             id: "editor-frame",
             class:"editor-frame",
-            onclick: click,
+            ondoubleclick: click,
                 div {
                     id: "preview",
                     {preview}
