@@ -34,6 +34,14 @@ impl EditorStore {
     {
         self.drafts.insert(id, data.into_block());
     }
+    pub fn druft_as<T>(&self, id: ContentID) -> Option<T>
+    where
+        T: TryFrom<Block>,
+    {
+        self.draft(id)
+            .cloned()
+            .and_then(|block| T::try_from(block).ok())
+    }
     pub fn select(&mut self, contnet_id: ContentID) {
         self.selected = Some(contnet_id);
     }
@@ -213,5 +221,47 @@ impl ArticleStore {
 
     pub fn current_block_mut(&mut self, id: ContentID) -> Option<&mut Block> {
         self.current_content_mut(id).map(|block| &mut block.block)
+    }
+
+    pub fn delete_content(&mut self, id: ContentID) -> Option<Content> {
+        let article_id = self.current?;
+        let body = self.bodies.get_mut(&article_id)?;
+        body.remove(id)
+    }
+    pub fn dublicate_content(&mut self, id: ContentID) -> Option<ContentID> {
+        let article_id = self.current?;
+        let body = self.bodies.get_mut(&article_id)?;
+        body.dublicate(id)
+    }
+    pub fn move_content_down(&mut self, id: ContentID) -> bool {
+        let Some(article_id) = self.current() else {
+            return false;
+        };
+        let Some(body) = self.bodies.get_mut(&article_id) else {
+            return false;
+        };
+        body.move_down(id)
+    }
+
+    pub fn move_content_up(&mut self, id: ContentID) -> bool {
+        let Some(article_id) = self.current else {
+            return false;
+        };
+
+        let Some(body) = self.bodies.get_mut(&article_id) else {
+            return false;
+        };
+        body.move_up(id)
+    }
+
+    pub fn insert_content_above(&mut self, target: ContentID, block: Block) -> Option<ContentID> {
+        let article_id = self.current()?;
+        let body = self.bodies.get_mut(&article_id)?;
+        body.insert_above(target, block)
+    }
+    pub fn insert_content_belove(&mut self, target: ContentID, block: Block) -> Option<ContentID> {
+        let article_id = self.current()?;
+        let body = self.bodies.get_mut(&article_id)?;
+        body.insert_below(target, block)
     }
 }
