@@ -81,6 +81,181 @@ impl ArticleBody {
             bloks: vec![],
         }
     }
+
+    pub fn len(self) -> usize {
+        self.bloks.len()
+    }
+
+    pub fn is_empty(&self) -> bool {
+        self.bloks.is_empty()
+    }
+
+    pub fn contnet(&self, id: ContentID) -> Option<&Content> {
+        self.bloks.iter().find(|content| content.id == id)
+    }
+
+    pub fn content_mut(&mut self, id: ContentID) -> Option<&mut Content> {
+        self.bloks.iter_mut().find(|content| content.id == id)
+    }
+
+    pub fn contains(&self, id: ContentID) -> bool {
+        self.contnet(id).is_some()
+    }
+
+    pub fn normalaze_order(&mut self) {
+        let mut includes: Vec<usize> = (0..self.bloks.len()).collect();
+
+        includes.sort_by_key(|&index| self.bloks[index].order);
+        for (position, index) in includes.into_iter().enumerate() {
+            self.bloks[index].order = ((position + 1) as u32) * 10;
+        }
+    }
+
+    pub fn push(&mut self, block: Block) -> ContentID {
+        let order = self.next_order();
+        let content = Content::new(block, order);
+
+        let id = content.id;
+        self.bloks.push(content);
+
+        id
+    }
+    fn next_order(&self) -> u32 {
+        self.bloks
+            .iter()
+            .map(|content| content.order)
+            .max()
+            .map(|order| order.saturating_add(10))
+            .unwrap_or(10)
+    }
+
+    pub fn remove(&mut self, id: ContentID) -> Option<Content> {
+        let index = self.index_of(id)?;
+        Some(self.bloks.remove(index))
+    }
+    pub fn move_up(&mut self, id: ContentID) -> bool {
+        let Some(curren_index) = self.index_of(id) else {
+            return false;
+        };
+        let curent_order = self.bloks[curren_index].order;
+        let Some(previous_index) = self
+            .bloks
+            .iter()
+            .enumerate()
+            .filter(|(_, content)| content.order < curent_order)
+            .max_by_key(|(_, content)| content.order)
+            .map(|(index, _)| index)
+        else {
+            return false;
+        };
+        let previous_order = self.bloks[previous_index].order;
+
+        self.bloks[curren_index].order = previous_order;
+        self.bloks[previous_index].order = curent_order;
+        true
+    }
+    pub fn move_down(&mut self, id: ContentID) -> bool {
+        let Some(curren_index) = self.index_of(id) else {
+            return false;
+        };
+        let curent_order = self.bloks[curren_index].order;
+        let Some(next_index) = self
+            .bloks
+            .iter()
+            .enumerate()
+            .filter(|(_, content)| content.order > curent_order)
+            .max_by_key(|(_, content)| content.order)
+            .map(|(index, _)| index)
+        else {
+            return false;
+        };
+        let next_order = self.bloks[next_index].order;
+
+        self.bloks[curren_index].order = next_order;
+        self.bloks[next_index].order = curent_order;
+        true
+    }
+
+    pub fn dublicate(&mut self, id: ContentID) -> Option<ContentID> {
+        let current_order = self.contnet(id)?.order;
+
+        let next_order = self
+            .bloks
+            .iter()
+            .filter(|content| content.order > current_order)
+            .map(|content| content.order)
+            .min()?;
+
+        let index = self.index_of(id)?;
+        let mut dublicate = self.bloks[index].clone();
+
+        dublicate.id = ContentID::new();
+        let new_id = dublicate.id;
+
+        dublicate.order = Self::beetween(current_order, next_order)?;
+
+        self.bloks.push(dublicate);
+
+        Some(new_id)
+    }
+    pub fn insert_above(&mut self, target: ContentID, block: Block) -> Option<ContentID> {
+        if let Some(id) = self.try_insert_above(target, &block) {
+            return Some(id);
+        }
+        self.normalaze_order();
+        self.try_insert_below(target, &block)
+    }
+    pub fn insert_below(&mut self, target: ContentID, block: Block) -> Option<ContentID> {
+        if let Some(id) = self.try_insert_below(target, &block) {
+            return Some(id);
+        }
+        self.normalaze_order();
+        self.try_insert_below(target, &block)
+    }
+    fn try_insert_above(&mut self, target: ContentID, block: &Block) -> Option<ContentID> {
+        let target_order = self.contnet(target)?.order;
+        let previous_order = self
+            .bloks
+            .iter()
+            .filter(|content| content.order < target_order)
+            .map(|content| content.order)
+            .max();
+        let new_order = match previous_order {
+            Some(previous) => Self::beetween(previous, target_order),
+            None => Some(target_order / 2),
+        }?;
+        let content = Content::new(block.clone(), new_order);
+        let id = content.id;
+        self.bloks.push(content);
+        Some(id)
+    }
+    fn try_insert_below(&mut self, target: ContentID, block: &Block) -> Option<ContentID> {
+        let target_order = self.contnet(target)?.order;
+        let previous_order = self
+            .bloks
+            .iter()
+            .filter(|content| content.order > target_order)
+            .map(|content| content.order)
+            .min();
+        let new_order = match previous_order {
+            Some(previous) => Self::beetween(previous, target_order),
+            None => target_order.checked_add(10),
+        }?;
+        let content = Content::new(block.clone(), new_order);
+        let id = content.id;
+        self.bloks.push(content);
+        Some(id)
+    }
+    fn beetween(a: u32, b: u32) -> Option<u32> {
+        if b <= a + 1 {
+            return None;
+        }
+        Some(a + (b - a) / 2)
+    }
+
+    fn index_of(&self, id: ContentID) -> Option<usize> {
+        self.bloks.iter().position(|content| content.id == id)
+    }
 }
 
 #[derive(Debug, Clone, Deserialize, Serialize, PartialEq, Eq)]
@@ -99,13 +274,58 @@ pub enum Block {
     Info(InfoData),
 }
 
+impl Content {
+    pub fn new(block: Block, order: u32) -> Self {
+        Self {
+            id: ContentID::new(),
+            order,
+            block,
+        }
+    }
+
+    pub fn id(&self) -> ContentID {
+        self.id
+    }
+
+    pub fn order(&self) -> u32 {
+        self.order
+    }
+
+    pub fn block(&self) -> &Block {
+        &self.block
+    }
+
+    pub fn block_mut(&mut self) -> &mut Block {
+        &mut self.block
+    }
+    pub fn set_order(&mut self, order: u32) {
+        self.order = order
+    }
+}
 pub trait IntoBlock {
     fn into_block(self) -> Block;
 }
-
+impl TryFrom<Block> for CodeData {
+    type Error = ();
+    fn try_from(value: Block) -> Result<Self, Self::Error> {
+        match value {
+            Block::Code(data) => Ok(data),
+            _ => Err(()),
+        }
+    }
+}
 impl IntoBlock for CodeData {
     fn into_block(self) -> Block {
         Block::Code(self)
+    }
+}
+impl TryFrom<Block> for InfoData {
+    type Error = ();
+    fn try_from(value: Block) -> Result<Self, Self::Error> {
+        match value {
+            Block::Info(data) => Ok(data),
+            _ => Err(()),
+        }
     }
 }
 impl IntoBlock for InfoData {
@@ -113,9 +333,27 @@ impl IntoBlock for InfoData {
         Block::Info(self)
     }
 }
+impl TryFrom<Block> for SectionData {
+    type Error = ();
+    fn try_from(value: Block) -> Result<Self, Self::Error> {
+        match value {
+            Block::Section(data) => Ok(data),
+            _ => Err(()),
+        }
+    }
+}
 impl IntoBlock for SectionData {
     fn into_block(self) -> Block {
         Block::Section(self)
+    }
+}
+impl TryFrom<Block> for WarningData {
+    type Error = ();
+    fn try_from(value: Block) -> Result<Self, Self::Error> {
+        match value {
+            Block::Warning(data) => Ok(data),
+            _ => Err(()),
+        }
     }
 }
 impl IntoBlock for WarningData {
