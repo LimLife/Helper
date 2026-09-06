@@ -1,71 +1,51 @@
+use crate::components::elements::editor_elements::panel_header::PanelHeader;
 use dioxus::prelude::*;
 use shared::data_block::CodeData;
 use shared::new_type_id::ContentID;
 use shared::store::EditorStore;
 #[component]
 pub fn CodeEditor(code_data: CodeData, id: ContentID) -> Element {
-    let mut code_store = use_context::<Signal<EditorStore>>();
+    let origina_data = code_data.clone();
+    let editor_store = use_context::<Signal<EditorStore>>();
+    if editor_store.read().has_draft(id) {
+        if let Some(code) = editor_store.read().druft_as::<CodeData>(id) {
+            code_data = code;
+        }
+    }
     let mut c_data = use_signal(|| code_data.clone());
-    let click = move |_| {
-        code_store.write().set_draft(
-            id,
-            CodeData {
-                title: code_data.title.clone(),
-                code_content: code_data.code_content.clone(),
-                code_header: code_data.code_header.clone(),
-            },
-        );
+    let click = {
+        let mut editor_store = editor_store;
+        move |_| {
+            editor_store.write().set_draft(id, c_data.read().clone());
+        }
     };
+    let discard_data = {
+        let mut editor_store = editor_store;
+        let mut c_data = c_data;
+        move |_| {
+            editor_store.write().discard_draft(id);
+            c_data.set(origina_data.clone());
+        }
+    };
+    use_drop({
+        let mut editor_store = editor_store;
+        move || {
+            editor_store.write().set_draft(id, c_data.read().clone());
+        }
+    });
     rsx! {
             div {
                 id: "code-editor",
                 class: "code-editor",
-                style: "display: flex; flex-direction: column; gap: 12px; width: 100%;",
-
-                // Шапка редактора
+                PanelHeader {
+                  save: click,
+                  remove: discard_data
+                },
                 div {
-                    style: "display: flex; justify-content: space-between; align-items: center; padding: 0 4px;",
-                    span {
-                        style: "font-size: 11px; font-weight: 600; color: #858585; text-transform: uppercase; letter-spacing: 0.08em;",
-                        "Редактор кода"
-                    }
-                    button {
-                        class: "code-btn-save",
-                        onclick: click,
-                        "Сохранить"
-                    }
-                }
-
-                // Textarea
-                div {
-                    style: "width: 100%; position: relative;",
+                    class: "code-textarea-pos",
                     textarea {
                         id: "code-code-content",
                         class: "code-textarea",
-                        style: "
-                            width: 100%;
-                            min-width: 100%;
-                            max-width: 100%;
-                            box-sizing: border-box;
-                            min-height: 120px;
-                            padding: 16px;
-                            border: 1px solid #3e3e42;
-                            border-radius: 8px;
-                            background: #1e1e1e;
-                            color: #d4d4d4;
-                            font-family: 'Fira Code', 'Cascadia Code', 'Consolas', 'Courier New', monospace;
-                            font-size: 14px;
-                            line-height: 1.6;
-                            tab-size: 4;
-                            resize: vertical;
-                            overflow-x: auto;
-                            overflow-y: hidden;
-                            white-space: pre;
-                            word-wrap: normal;
-                            field-sizing: content;
-                            outline: none;
-                            transition: border-color 0.2s, box-shadow 0.2s;
-                        ",
                         value: c_data.read().code_content.clone(),
                         oninput: move |e| {
                             c_data.with_mut(|data|{

@@ -56,7 +56,7 @@ pub fn EditorFrame(content_id: ContentID, preview: Element) -> Element {
                     {preview}
                 }
             if selected {
-                ToolBarBlock{}
+                ToolBarBlock{ id: content_id}
                 div {
                      id: "editor-editable",
                      onclick: move |e: Event<MouseData>| {
