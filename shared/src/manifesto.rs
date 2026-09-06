@@ -177,26 +177,11 @@ impl ArticleBody {
     }
 
     pub fn dublicate(&mut self, id: ContentID) -> Option<ContentID> {
-        let current_order = self.contnet(id)?.order;
-
-        let next_order = self
-            .bloks
-            .iter()
-            .filter(|content| content.order > current_order)
-            .map(|content| content.order)
-            .min()?;
-
-        let index = self.index_of(id)?;
-        let mut dublicate = self.bloks[index].clone();
-
-        dublicate.id = ContentID::new();
-        let new_id = dublicate.id;
-
-        dublicate.order = Self::beetween(current_order, next_order)?;
-
-        self.bloks.push(dublicate);
-
-        Some(new_id)
+        if let Some(id) = self.try_dublicate(id) {
+            return Some(id);
+        }
+        self.normalaze_order();
+        self.try_dublicate(id)
     }
     pub fn insert_above(&mut self, target: ContentID, block: Block) -> Option<ContentID> {
         if let Some(id) = self.try_insert_above(target, &block) {
@@ -211,6 +196,32 @@ impl ArticleBody {
         }
         self.normalaze_order();
         self.try_insert_below(target, &block)
+    }
+    fn try_dublicate(&mut self, id: ContentID) -> Option<ContentID> {
+        let current_order = self.contnet(id)?.order;
+
+        let next_order = self
+            .bloks
+            .iter()
+            .filter(|content| content.order > current_order)
+            .map(|content| content.order)
+            .min();
+
+        let new_orader = match next_order {
+            Some(next) => Self::beetween(current_order, next)?,
+            None => current_order.checked_add(10)?,
+        };
+
+        let index = self.index_of(id)?;
+        let mut dublicate = self.bloks[index].clone();
+
+        dublicate.id = ContentID::new();
+        dublicate.order = new_orader;
+        let new_id = dublicate.id;
+
+        self.bloks.push(dublicate);
+
+        Some(new_id)
     }
     fn try_insert_above(&mut self, target: ContentID, block: &Block) -> Option<ContentID> {
         let target_order = self.contnet(target)?.order;
