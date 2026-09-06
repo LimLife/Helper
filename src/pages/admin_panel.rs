@@ -10,13 +10,14 @@ use crate::components::elements::layouts::main_layout::sidebar_right::SidebarRig
 #[component]
 pub fn AdminPage() -> Element {
     let article_store = use_context::<Signal<ArticleStore>>();
-    let blocks = {
+    let mut blocks = {
         let store = article_store.read();
         store
             .current_body()
             .map(|body| body.bloks.clone())
             .unwrap_or_default()
     };
+    blocks.sort_by_key(|contnet| contnet.order);
     let node_right = use_signal(|| vec![NodeMeta::new()]);
     rsx! {
         div {
