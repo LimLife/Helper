@@ -109,17 +109,14 @@ pub fn AdminPage() -> Element {
     };
 
     let editor_render = if article_store.read().current().is_some() {
-        if blocks.is_empty() {
-            rsx! {
-                div { class: "empty-content", onclick: move |_| { open_create(InsertPosition::First) }, "Add first block" }
+        rsx! {
+            SelectCreateBlock {
+                create: move |_| {open_create(InsertPosition::First)},
             }
-        } else {
-            rsx! {
-                RenderComponent {
-                    on_create: open_create,
-                    on_edit: open_editor,
-                    node_block: blocks,
-                }
+            RenderComponent {
+                on_create: open_create,
+                on_edit: open_editor,
+                node_block: blocks,
             }
         }
     } else {
@@ -135,6 +132,17 @@ pub fn AdminPage() -> Element {
             div { id: "editor-right-bar",
                 SidebarRight { node_right }
             }
+        }
+    }
+}
+
+#[component]
+fn SelectCreateBlock(create: EventHandler<()>) -> Element {
+    rsx! {
+        div {
+            class: "admin-page-empty-content",
+            onclick: move |_| create.call(()),
+            "+"
         }
     }
 }
