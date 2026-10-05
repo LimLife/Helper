@@ -9,13 +9,11 @@ impl NodeMetaID {
         Self(Uuid::new_v4())
     }
 }
-
 impl fmt::Display for NodeMetaID {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
         write!(f, "{}", self.0)
     }
 }
-
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, Deserialize, Serialize)]
 #[serde(transparent)]
 pub struct ArticleID(pub Uuid);
@@ -24,7 +22,6 @@ impl ArticleID {
         Self(Uuid::new_v4())
     }
 }
-
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, Deserialize, Serialize)]
 #[serde(transparent)]
 pub struct ContentID(pub Uuid);
