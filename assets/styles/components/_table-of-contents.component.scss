@@ -1,4 +1,8 @@
 .table-of-contents {
+
+    border: 1px solid blue;
+    border-radius: 1rem;
+    background-color: darkgray;
     &-header {
         padding: var(--space-lg);
     }

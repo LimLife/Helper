@@ -1,7 +1,9 @@
 use dioxus::prelude::*;
+
+
 #[component]
 pub fn FooterCommunity() -> Element {
-    rsx! {
+    rsx!{
         span { class: "footer-community", "Footer Community" }
     }
 }

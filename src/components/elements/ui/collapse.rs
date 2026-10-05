@@ -1,23 +1,37 @@
 use dioxus::prelude::*;
+
+
+
 #[component]
-pub fn Collapse(id: String, label: Element, content: Element) -> Element {
+pub fn Collapse(id:String, label: Element, content:Element)->Element {
+    let id_clone = id.clone();
     let mut open = use_signal(|| false);
-    rsx! {
+    rsx!{
         div { class: "ui_collapse",
-            button {
-                class: "ui_collapse-trigger",
-                r#type: "button",
-                aria_expanded: open(),
-                aria_controls: "{id}",
-                onclick: move |_| open.set(!open()),
-                {label}
+            input {
+                class: "ui_collapse-input",
+                r#type: "checkbox",
+                id: "{id_clone}",
+                onclick: move |_| { open.set(!open()) },
             }
-            div {
-                class: "ui_collapse-content-wrapper",
-                class: if open() { "open" } else { "" },
-                id: "{id}",
-                {content}
-            }
+            CollapseLabel { id: id_clone.clone(), label }
+            CollapseContent { content }
+        }
+    }
+}
+
+#[component]
+pub fn CollapseLabel(id:String, label:Element) -> Element {
+    rsx!{
+        label { id: "{id}", r#for: "{id}", class: "ui_collapse-label", {label} }
+    }
+}
+
+#[component]
+pub fn CollapseContent(content:Element)->Element {
+    rsx!{
+        div { class: "ui_collapse-content-wrapper",
+            div { class: "ui_collapse-content", {content} }
         }
     }
 }
