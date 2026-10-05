@@ -1,17 +1,14 @@
 use dioxus::prelude::*;
+#[cfg(feature = "server")]
+use shared::store::{ArticleStore, SectionStore};
 use shared::{
     manifesto::{Article, ArticleBody, NodeMeta},
     new_type_id::{ArticleID, NodeMetaID},
 };
-
-#[cfg(feature = "server")]
-use shared::store::{ArticleStore, SectionStore};
-
 #[server]
 pub async fn server_load_children(parent_id: NodeMetaID) -> Result<Vec<NodeMeta>, ServerFnError> {
     let (section, _): (SectionStore, ArticleStore) =
         crate::data_component::fake_data::data::fake_data();
-
     let children = section
         .children
         .get(&parent_id)
@@ -32,7 +29,6 @@ pub async fn server_load_article(article_id: ArticleID) -> Result<Article, Serve
         .cloned()
         .ok_or(ServerFnError::new("Article not found"))
 }
-
 #[server]
 pub async fn server_load_article_body(article_id: ArticleID) -> Result<ArticleBody, ServerFnError> {
     let (_, article_store) = crate::data_component::fake_data::data::fake_data();
@@ -42,7 +38,6 @@ pub async fn server_load_article_body(article_id: ArticleID) -> Result<ArticleBo
         .cloned()
         .ok_or(ServerFnError::new("Body not found"))
 }
-
 #[server]
 pub async fn server_load_root() -> Result<Vec<NodeMeta>, ServerFnError> {
     let s = vec![NodeMeta::new()];
