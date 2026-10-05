@@ -1,13 +1,12 @@
 mod content_area;
 pub mod sidebar_left;
 pub mod sidebar_right;
-use crate::components::elements::shared_elements::tree_root;
-use dioxus::prelude::*;
-
 use super::main_layout::{
     content_area::ContentArea, sidebar_left::SidebarLeft, sidebar_right::SidebarRight,
 };
-use crate::render_components::content_render::RenderCoomponent;
+use crate::components::elements::shared_elements::tree_root;
+use crate::render_components::content_render::RenderComponent;
+use dioxus::prelude::*;
 use shared::{manifesto::NodeMeta, store::ArticleStore};
 #[component]
 pub fn MainLayout() -> Element {
@@ -17,16 +16,16 @@ pub fn MainLayout() -> Element {
         let store = article_store.read();
         store
             .current_body()
-            .map(|body| body.bloks.clone())
+            .map(|body| body.blocks.clone())
             .unwrap_or_default()
     };
     rsx! {
         main { id: "main-layout", class: "main-layout",
-            SidebarLeft {},
+            SidebarLeft {}
             ContentArea {
-                RenderCoomponent{node_block: blocks}
+                RenderComponent { node_block: blocks }
             }
-            SidebarRight {node_right}
+            SidebarRight { node_right }
         }
     }
 }

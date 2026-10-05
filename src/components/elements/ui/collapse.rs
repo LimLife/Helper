@@ -1,9 +1,7 @@
 use dioxus::prelude::*;
-
 #[component]
 pub fn Collapse(id: String, label: Element, content: Element) -> Element {
     let mut open = use_signal(|| false);
-
     rsx! {
         div { class: "ui_collapse",
             button {

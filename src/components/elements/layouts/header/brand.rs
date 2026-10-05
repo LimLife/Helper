@@ -1,7 +1,5 @@
 use dioxus::prelude::*;
-
 use crate::components::assets::images::APP;
-
 #[component]
 pub fn Brand() -> Element {
     rsx! {

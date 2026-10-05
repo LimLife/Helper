@@ -1,11 +1,11 @@
 use dioxus::prelude::*;
 use shared::store::SectionStore;
-
 use crate::{
-    components::elements::layouts::{footer::Footer, header::Header, main_layout::MainLayout},
+    components::elements::layouts::{
+        footer::Footer, header::Header, main_layout::MainLayout,
+    },
     data_component::cotent_loader::Loader,
 };
-
 #[component]
 pub fn Main() -> Element {
     use_effect(move || {

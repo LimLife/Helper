@@ -1,10 +1,7 @@
 use dioxus::prelude::*;
-
-
-
 #[component]
 pub fn SidebarHeader() -> Element {
-    rsx!{
+    rsx! {
         div {
             id: "left-sidebar-header",
             class: "left-sidebar-header font-size-titel",

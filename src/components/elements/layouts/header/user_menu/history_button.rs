@@ -1,5 +1,4 @@
 use dioxus::prelude::*;
-
 use crate::components::assets::images::HISTORY;
 #[component]
 pub fn HistoryButton() -> Element {

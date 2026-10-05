@@ -1,8 +1,7 @@
 use dioxus::prelude::*;
-
 #[component]
 pub fn ExpandArrow() -> Element {
-    rsx!{
+    rsx! {
         div { id: "expand-arrow", class: "expand-arrow", ">" }
     }
 }

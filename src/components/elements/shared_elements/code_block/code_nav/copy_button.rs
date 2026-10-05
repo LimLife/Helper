@@ -1,7 +1,5 @@
 use dioxus::prelude::*;
-
 use crate::components::assets::images::COPY;
-
 #[component]
 pub fn CopyButton() -> Element {
     rsx! {
@@ -13,6 +11,5 @@ pub fn CopyButton() -> Element {
                 alt: "Copy button",
             }
         }
-
     }
 }

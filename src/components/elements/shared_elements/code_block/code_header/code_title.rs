@@ -1,6 +1,4 @@
 use dioxus::prelude::*;
-
-
 #[component]
 pub fn CodeTitle() -> Element {
     rsx! {
