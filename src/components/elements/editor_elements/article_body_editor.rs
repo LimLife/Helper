@@ -15,7 +15,7 @@ use shared::traits::editor_store::exsist_draft::ExsistDraft;
 use shared::traits::editor_store::select::Select;
 
 #[component]
-pub fn ContentEditor(
+pub fn ArticleBodyEditor(
     content: Content,
     on_create: EventHandler<InsertPosition>,
     on_edit: EventHandler<ContentID>,
