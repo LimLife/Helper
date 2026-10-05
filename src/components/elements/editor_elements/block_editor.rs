@@ -130,10 +130,6 @@ fn BlockEditorHeader(target: BlockEditorTarget, on_cancel: EventHandler<()>) -> 
                    class: "block-editor-title",
                    "{title}"
                }
-               span {
-                   class: "block-editor-status",
-                   {title}
-                }
             }
             button {
                 r#type: "button",
