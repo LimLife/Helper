@@ -1,4 +1,4 @@
-use crate::components::elements::editor_elements::article_body_editor::ContentEditor;
+use crate::components::elements::editor_elements::article_body_editor::ArticleBodyEditor;
 
 use dioxus::prelude::*;
 use shared::manifesto::{Content, InsertPosition};
@@ -13,7 +13,7 @@ pub fn RenderComponent(
     let on_create = move |position| on_create.call(position);
     rsx! {
         for content in node_block {
-            ContentEditor {
+            ArticleBodyEditor {
                 content: content,
                 on_create,
                 on_edit

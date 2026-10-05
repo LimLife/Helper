@@ -355,6 +355,15 @@
   display: grid;
   grid-template-rows: auto 1fr auto;
 }
+.admin-page-empty-content {
+  display: flex;
+  justify-content: center;
+  padding-bottom: 1.25rem;
+  padding-top: 1.25rem;
+  border: 3px white dashed;
+  font-weight: bold;
+  font-size: 1.875rem;
+}
 
 .font-size-titel {
   font-size: var(--font-titel-size);
