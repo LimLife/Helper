@@ -1,7 +1,10 @@
+use crate::app::App;
+
 mod app;
 mod components;
-use app::set_app;
-
+mod data_component;
+mod pages;
+mod render_components;
 fn main() {
-    set_app();
+    dioxus::launch(App);
 }

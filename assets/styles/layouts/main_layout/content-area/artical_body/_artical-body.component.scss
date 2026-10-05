@@ -1,0 +1,20 @@
+.artical-body {
+    display: grid;
+    gap: var(--space-lg);
+    border-radius: var(--space-2lg);
+    > * {
+        background-color: var(--color-bg-element);
+        border-radius: var(--space-lg);
+    }
+    &-grid-wraper {
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-lg);
+    }
+    &-info-box {
+        background-color: var(--color-info);
+    }
+    &-warning-box {
+        background-color: var(--color-warning);
+    }
+}

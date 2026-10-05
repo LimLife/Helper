@@ -1,0 +1,13 @@
+.admin-page {
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    &-empty-content {
+        display: flex;
+        justify-content: center;
+        padding-bottom: 1.25rem;
+        padding-top: 1.25rem;
+        border: 3px var(--color-border-primary) dashed;
+        font-weight: bold;
+        font-size: 1.875rem;
+    }
+}
