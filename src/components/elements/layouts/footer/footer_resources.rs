@@ -1,7 +1,9 @@
 use dioxus::prelude::*;
+
+
 #[component]
 pub fn FooterResources() -> Element {
-    rsx! {
+    rsx!{
         span { class: "footer-resources", "Footer Resources" }
     }
 }

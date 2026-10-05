@@ -1,4 +1,4 @@
-pub mod editor_elements;
+pub mod app;
 pub mod layouts;
-pub mod shared_elements;
+pub mod pages;
 pub mod ui;

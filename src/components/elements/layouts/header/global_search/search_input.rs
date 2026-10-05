@@ -1,7 +1,9 @@
 use dioxus::prelude::*;
+
 #[component]
-pub fn SearchInput() -> Element {
-    rsx! {
+pub fn SearchInput()->Element {
+    rsx!{
+
         input {
             id: "search-input",
             class: "search-input",
@@ -10,5 +12,6 @@ pub fn SearchInput() -> Element {
             aria_label: "Search",
         }
         span { id: "hint", class: "search-hint", "⌘K" }
+
     }
 }

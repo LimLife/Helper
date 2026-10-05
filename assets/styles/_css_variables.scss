@@ -1,38 +1,17 @@
 :root {
-    --color-bg-page:         #000000;
-    --color-bg-element:      #0d0d0d;
+    --color-bg-page: #000000;
+    --color-bg-element: #0d0d0d;
     --font-family-base: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-    --font-size-root-half:  0.5rem;
-    --font-size-root:       1rem;
-    --font-titel-size:      1.5rem;
-    --color-text-primary:    #ffffff;
+    --font-size-root: 1rem;
+    --font-titel-size: 1.5rem;
+    --color-text-primary: #ffffff;
     --color-content-primary: #ddc0c0;
-    --color-text-muted:      #737373;
-
-
-    --color-surface-1:       #080808;
-    --color-surface-2:       #101010;
-    --color-surface-3:       #181818;
-
-    --color-border-subtle:   #181818;
-    --color-border:          #262626;
-    --color-border-strong:   #3a3a3a;
-    --color-border-primary:  #ffffff;
-
-
-
-    --color-accent:          #6ea8fe;
-
 
       /* States */
-    --color-success:         #28a745;
-    --color-warning:         #ffc107;
-    --color-danger:          #dc3545;
-    --color-info:            #0dcaf0;
-
-    /* Gap*/
-    --gap-md:0.75rem;
-
+    --color-success: #28a745;
+    --color-warning: #ffc107;
+    --color-danger: #dc3545;
+    --color-info: #0dcaf0;
 
     /*Spacing*/
     --space-zero: 0rem;
@@ -53,8 +32,7 @@
     /*
         Size-Images
     */
-    /* outline*/
-    --ounline-color-white: #fff;
+
     --image--size-2xl: 1.5rem;
     --image--size-4xl: 2.5rem;
     /*
@@ -66,5 +44,4 @@
     --color-bg-page: #ffffff;
     --color-text-primary: #000000;
     --color-bg-element: #0d0d0d;
-    --color-border-primary: #000000;
 }
