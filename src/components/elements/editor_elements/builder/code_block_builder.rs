@@ -67,7 +67,7 @@ fn CodeFieldEditor(data: Signal<CodeData>) -> Element {
                 div {
                     class: "block-editor-section-body",
                     TextEditor {
-                        value: data.with(|header| header.code_header.clone().unwrap()),
+                        value: data.with(|header| header.code_header.clone().unwrap_or_default()),
                         on_input: move |e| {
                             data.with_mut(|code_header| {
                                 code_header.code_header = Some(e)
