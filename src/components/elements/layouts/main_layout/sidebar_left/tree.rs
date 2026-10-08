@@ -1,8 +1,7 @@
-use dioxus::prelude::*;
-
 use crate::{
     components::elements::ui::collapse_list::CollapseList, data_component::cotent_loader::Loader,
 };
+use dioxus::prelude::*;
 use shared::{
     manifesto::NodeType,
     new_type_id::NodeMetaID,
@@ -30,9 +29,7 @@ pub fn Tree(node_id: NodeMetaID, deep: u32) -> Element {
                 .unwrap_or_default(),
         )
     };
-
     let padding = format!("padding-left: {}rem;", deep as f64 * 1.25);
-
     match &node.type_node {
         NodeType::Section => {
             rsx! {
@@ -41,15 +38,14 @@ pub fn Tree(node_id: NodeMetaID, deep: u32) -> Element {
                     expand: expand.clone(),
                     label: rsx! {
                         div {
-                            onclick:
-                                move |_| {
+                            onclick: move |_| {
                                 async move {
-                                let mut store = use_context::<Signal<SectionStore>>();
-                                if !store.read().is_loaded(node.id.clone()){
-                                    let children = loader.load_children(node.id.clone()).await.unwrap();
-                                    store.write().insert_children(node.id.clone(), children);
-                                }
-                                store.write().toggle_expand(node_id);
+                                    let mut store = use_context::<Signal<SectionStore>>();
+                                    if !store.read().is_loaded(node.id.clone()) {
+                                        let children = loader.load_children(node.id.clone()).await.unwrap();
+                                        store.write().insert_children(node.id.clone(), children);
+                                    }
+                                    store.write().toggle_expand(node_id);
                                 }
                             },
                             style: "{padding}",
@@ -59,33 +55,28 @@ pub fn Tree(node_id: NodeMetaID, deep: u32) -> Element {
                     content: rsx! {
                         if expand {
                             for child_id in children {
-                                Tree {
-                                    node_id: child_id,
-                                    deep: deep + 1,
-                                }
+                                Tree { node_id: child_id, deep: deep + 1 }
                             }
                         }
-                    }
+                    },
                 }
             }
         }
-
         NodeType::Article { article_id } => {
             let article = *article_id;
             rsx! {
-                li {
-                    style: "{padding}",
-
+                li { style: "{padding}",
                     div {
                         class: "tree-article",
-                        onclick: move |_| { async move {
-                            let mut store = use_context::<Signal<ArticleStore>>();
-                            if !store_article.read().has_article(article.clone()) {
-                                let children = loader.load_article(article).await.unwrap();
-                                store.write().insert_article(children);
+                        onclick: move |_| {
+                            async move {
+                                let mut store = use_context::<Signal<ArticleStore>>();
+                                if !store_article.read().has_article(article.clone()) {
+                                    let children = loader.load_article(article).await.unwrap();
+                                    store.write().insert_article(children);
+                                }
+                                store_article.write().open(article);
                             }
-                            store_article.write().open(article);
-                        }
                         },
                         "{node.title}"
                     }

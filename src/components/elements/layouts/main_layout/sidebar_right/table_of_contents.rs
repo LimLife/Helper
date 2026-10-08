@@ -1,15 +1,10 @@
-mod toc_item;
 mod header_toc;
-
+mod toc_item;
+use super::table_of_contents::{header_toc::HeaderToc, toc_item::TocItem};
 use dioxus::prelude::*;
-use super::table_of_contents::{
-    toc_item::TocItem,
-    header_toc::HeaderToc
-};
-
 #[component]
-pub fn TableOfContents()->Element{
-    rsx!{
+pub fn TableOfContents() -> Element {
+    rsx! {
         div { class: "table-of-contents",
             HeaderToc {}
             nav { class: "table-of-contents-nav",

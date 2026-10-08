@@ -1,5 +1,4 @@
 use dioxus::prelude::*;
-
 #[component]
 pub fn NextArticleLink(next: Option<String>, next_name: Option<String>) -> Element {
     rsx! {

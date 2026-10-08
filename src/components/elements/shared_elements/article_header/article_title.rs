@@ -1,5 +1,4 @@
 use dioxus::prelude::*;
-
 #[component]
 pub fn ArticleTitle(title: Option<String>) -> Element {
     rsx! {

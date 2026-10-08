@@ -1,8 +1,7 @@
 use dioxus::prelude::*;
-
 #[component]
 pub fn ViewAllCommentsLink() -> Element {
-    rsx!{
+    rsx! {
         a { href: "#", "View All Comments" }
     }
 }

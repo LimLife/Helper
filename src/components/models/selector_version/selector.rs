@@ -5,7 +5,6 @@ pub struct Selector {
     pub selected: bool,
     pub disabled: bool,
 }
-
 impl Selector {
     pub fn empty() -> Self {
         Self {

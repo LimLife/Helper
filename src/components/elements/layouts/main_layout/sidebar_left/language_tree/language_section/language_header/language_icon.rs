@@ -1,9 +1,8 @@
-use dioxus::prelude::*;
-
 use crate::components::assets::images::PROGRAMMING_LANGUAGE;
+use dioxus::prelude::*;
 #[component]
 pub fn LanguageIcon() -> Element {
-    rsx!{
+    rsx! {
         img {
             id: "program-icon",
             class: "language-icon",

@@ -1,5 +1,4 @@
 use dioxus::prelude::*;
-
 #[component]
 pub fn PrevArticleLink(prev: Option<String>, prev_name: Option<String>) -> Element {
     rsx! {

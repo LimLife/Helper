@@ -1,9 +1,8 @@
-use dioxus::prelude::*;
 use crate::components::models::selector_version::selector::Selector;
-
+use dioxus::prelude::*;
 #[component]
-pub fn VersionSelector(selector: Vec<Selector>)-> Element {
-    rsx!{
+pub fn VersionSelector(selector: Vec<Selector>) -> Element {
+    rsx! {
         select { class: "selector",
             for selector in &selector {
                 SelectorOptions {
@@ -18,7 +17,7 @@ pub fn VersionSelector(selector: Vec<Selector>)-> Element {
 }
 #[component]
 pub fn SelectorOptions(disabled: bool, selected: bool, value: String, name: String) -> Element {
-    rsx!{
+    rsx! {
         option { disabled, selected, value, {name} }
     }
 }

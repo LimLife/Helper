@@ -1,7 +1,7 @@
 use dioxus::prelude::*;
-use shared::manifesto::{NodeMeta, NodeType};
+use shared::manifesto::NodeMeta;
 pub fn RightBarRender(node: Vec<NodeMeta>) -> Element {
     rsx! {
-        div {  }
+        div {}
     }
 }

@@ -1,7 +1,5 @@
-use dioxus::prelude::*;
-
 use super::code_nav::CodeNav;
-
+use dioxus::prelude::*;
 #[component]
 pub fn CodeContent(content: Option<String>) -> Element {
     rsx! {
