@@ -6,19 +6,21 @@ edition = "2021"
 
 
 [dependencies]
+domain  = {workspace = true}
+application = {workspace = true}
 anyhow = { workspace = true }
 dioxus = { workspace = true , features = ["fullstack", "router"] }
 tokio = { workspace = true, optional = true, features = ["macros", "rt-multi-thread"] }
 sqlx = { workspace = true,  optional = true, features = ["runtime-tokio","postgres","macros"]}
 uuid = { workspace = true,  features = ["js"] }
-#My lib
-shared = {path = "./shared"}
+
 [workspace]
 members = ["crate/helper_application",
     "crate/helper_domain"
 ]
 [workspace.dependencies]
-domain = {path ="./crate/helper_domain"}
+domain = {path ="./crate/helper_domain", package = "helper_domain"}
+application = {path = "./crate/helper_application", package= "helper_application"}
 uuid = { version = "1.23.2", features = ["v4", "serde"] }
 chrono = { version = "0.4", features = ["serde"] }
 serde = { version = "1.0.228", features = ["derive"] }
