@@ -1,5 +1,5 @@
 use dioxus::prelude::*;
-use shared::{manifesto::Content, new_type_id::ArticleID};
+use domain::{data::Content, id::ArticleID};
 
 #[server]
 pub async fn server_create_content(

@@ -4,7 +4,8 @@ use super::article_header::{article_description::ArticleDescription, article_tit
 use crate::components::elements::ui::version_selector::VersionSelector;
 use crate::components::models::selector_version::selector::Selector;
 use dioxus::prelude::*;
-use shared::data_block::ArticleHeaderData;
+use domain::data::ArticleHeaderData;
+
 #[component]
 pub fn ArticleHeader(header: ArticleHeaderData) -> Element {
     rsx! {

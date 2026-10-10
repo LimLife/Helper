@@ -6,8 +6,10 @@ use super::main_layout::{
 };
 use crate::components::elements::shared_elements::tree_root;
 use crate::render_components::content_render::RenderComponent;
+use application::store::ArticleStore;
 use dioxus::prelude::*;
-use shared::{manifesto::NodeMeta, store::ArticleStore};
+use domain::data::NodeMeta;
+
 #[component]
 pub fn MainLayout() -> Element {
     let node_right = use_signal(|| vec![NodeMeta::new()]);

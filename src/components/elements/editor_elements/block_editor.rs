@@ -1,10 +1,9 @@
-use dioxus::prelude::*;
-use shared::{
-    editor::{BlockEditorContext, BlockEditorTarget},
-    manifesto::Block,
-    store::{ArticleStore, EditorStore},
-    traits::editor_store::new_draft::NewDraft,
+use application::{
+    editor_state::{BlockEditorContext, BlockEditorTarget},
+    store::{ArticleStore, EditorStore, NewDraft},
 };
+use dioxus::prelude::*;
+use domain::data::Block;
 
 use crate::components::elements::editor_elements::builder::{
     code_block_builder::CodeBlockBuilder, info_block_builder::InfoBlockBuilder,

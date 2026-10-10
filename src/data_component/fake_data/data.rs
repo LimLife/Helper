@@ -1,10 +1,14 @@
 use std::collections::HashSet;
-use shared::{
-    data_block::{CodeData, InfoData, SectionData, WarningData},
-    manifesto::{Article, ArticleBody, Block, Content, NodeMeta, NodeType},
-    new_type_id::{ArticleID, ContentID, NodeMetaID},
-    store::{ArticleStore, SectionStore},
+
+use application::store::{ArticleStore, SectionStore};
+use domain::{
+    data::{
+        Article, ArticleBody, Block, CodeData, Content, InfoData, NodeMeta, NodeType, SectionData,
+        WarningData,
+    },
+    id::{ArticleID, ContentID, NodeMetaID},
 };
+
 pub fn fake_data() -> (SectionStore, ArticleStore) {
     let mut store_art = ArticleStore::default();
     let article1 = Article::new("Getting Started".into(), "Dioxus Team".into());
@@ -35,7 +39,8 @@ pub fn fake_data() -> (SectionStore, ArticleStore) {
                     code_content: Some(
                         r#"fn main() {
     println!("Hello, world!");
-}"#.into(),
+}"#
+                        .into(),
                     ),
                 }),
             },
@@ -74,16 +79,14 @@ pub fn fake_data() -> (SectionStore, ArticleStore) {
     let article3 = Article::new("Components".into(), "Dioxus Team".into());
     let body3 = ArticleBody {
         article_id: article3.id,
-        blocks: vec![
-            Content {
-                id: ContentID::new(),
-                order: 0,
-                block: Block::Section(SectionData {
-                    title: Some("Components".into()),
-                    paragraph: Some("Components are reusable UI units.".into()),
-                }),
-            },
-        ],
+        blocks: vec![Content {
+            id: ContentID::new(),
+            order: 0,
+            block: Block::Section(SectionData {
+                title: Some("Components".into()),
+                paragraph: Some("Components are reusable UI units.".into()),
+            }),
+        }],
     };
     store_art.insert_article(article1.clone());
     store_art.insert_article(article2.clone());
@@ -99,104 +102,94 @@ pub fn fake_data() -> (SectionStore, ArticleStore) {
     let borrow_id = NodeMetaID::new();
     let signals_id = NodeMetaID::new();
     store_sec.root = vec![rust_id, dioxus_id];
-    store_sec
-        .nodes
-        .insert(
-            rust_id,
-            NodeMeta {
-                id: rust_id,
-                parent_id: None,
-                sort_order: 0,
-                title: "Rust".into(),
-                description: Some("Rust language".into()),
-                icon: None,
-                has_children: true,
-                type_node: NodeType::Section,
+    store_sec.nodes.insert(
+        rust_id,
+        NodeMeta {
+            id: rust_id,
+            parent_id: None,
+            sort_order: 0,
+            title: "Rust".into(),
+            description: Some("Rust language".into()),
+            icon: None,
+            has_children: true,
+            type_node: NodeType::Section,
+        },
+    );
+    store_sec.nodes.insert(
+        dioxus_id,
+        NodeMeta {
+            id: dioxus_id,
+            parent_id: None,
+            sort_order: 1,
+            title: "Dioxus".into(),
+            description: Some("Dioxus framework".into()),
+            icon: None,
+            has_children: true,
+            type_node: NodeType::Section,
+        },
+    );
+    store_sec.nodes.insert(
+        memory_id,
+        NodeMeta {
+            id: memory_id,
+            parent_id: Some(rust_id),
+            sort_order: 0,
+            title: "Memory".into(),
+            description: None,
+            icon: None,
+            has_children: true,
+            type_node: NodeType::Section,
+        },
+    );
+    store_sec.nodes.insert(
+        ownership_id,
+        NodeMeta {
+            id: ownership_id,
+            parent_id: Some(memory_id),
+            sort_order: 0,
+            title: "Ownership".into(),
+            description: None,
+            icon: None,
+            has_children: false,
+            type_node: NodeType::Article {
+                article_id: article1.id,
             },
-        );
-    store_sec
-        .nodes
-        .insert(
-            dioxus_id,
-            NodeMeta {
-                id: dioxus_id,
-                parent_id: None,
-                sort_order: 1,
-                title: "Dioxus".into(),
-                description: Some("Dioxus framework".into()),
-                icon: None,
-                has_children: true,
-                type_node: NodeType::Section,
+        },
+    );
+    store_sec.nodes.insert(
+        borrow_id,
+        NodeMeta {
+            id: borrow_id,
+            parent_id: Some(memory_id),
+            sort_order: 1,
+            title: "Borrow Checker".into(),
+            description: None,
+            icon: None,
+            has_children: false,
+            type_node: NodeType::Article {
+                article_id: article2.id,
             },
-        );
-    store_sec
-        .nodes
-        .insert(
-            memory_id,
-            NodeMeta {
-                id: memory_id,
-                parent_id: Some(rust_id),
-                sort_order: 0,
-                title: "Memory".into(),
-                description: None,
-                icon: None,
-                has_children: true,
-                type_node: NodeType::Section,
+        },
+    );
+    store_sec.nodes.insert(
+        signals_id,
+        NodeMeta {
+            id: signals_id,
+            parent_id: Some(dioxus_id),
+            sort_order: 0,
+            title: "Signals".into(),
+            description: None,
+            icon: None,
+            has_children: false,
+            type_node: NodeType::Article {
+                article_id: article3.id,
             },
-        );
-    store_sec
-        .nodes
-        .insert(
-            ownership_id,
-            NodeMeta {
-                id: ownership_id,
-                parent_id: Some(memory_id),
-                sort_order: 0,
-                title: "Ownership".into(),
-                description: None,
-                icon: None,
-                has_children: false,
-                type_node: NodeType::Article {
-                    article_id: article1.id,
-                },
-            },
-        );
-    store_sec
-        .nodes
-        .insert(
-            borrow_id,
-            NodeMeta {
-                id: borrow_id,
-                parent_id: Some(memory_id),
-                sort_order: 1,
-                title: "Borrow Checker".into(),
-                description: None,
-                icon: None,
-                has_children: false,
-                type_node: NodeType::Article {
-                    article_id: article2.id,
-                },
-            },
-        );
-    store_sec
-        .nodes
-        .insert(
-            signals_id,
-            NodeMeta {
-                id: signals_id,
-                parent_id: Some(dioxus_id),
-                sort_order: 0,
-                title: "Signals".into(),
-                description: None,
-                icon: None,
-                has_children: false,
-                type_node: NodeType::Article {
-                    article_id: article3.id,
-                },
-            },
-        );
+        },
+    );
     store_sec.children.insert(rust_id, vec![memory_id]);
-    store_sec.children.insert(memory_id, vec![ownership_id, borrow_id]);
+    store_sec
+        .children
+        .insert(memory_id, vec![ownership_id, borrow_id]);
     store_sec.children.insert(dioxus_id, vec![signals_id]);
     store_sec.loaded = HashSet::from([rust_id, dioxus_id, memory_id]);
     (store_sec, store_art)
@@ -213,104 +206,94 @@ pub fn fake_section_store() -> SectionStore {
     let borrow_article = ArticleID::new();
     let signals_article = ArticleID::new();
     store_sec.root = vec![rust_id, dioxus_id];
-    store_sec
-        .nodes
-        .insert(
-            rust_id,
-            NodeMeta {
-                id: rust_id,
-                parent_id: None,
-                sort_order: 0,
-                title: "Rust".into(),
-                description: Some("Rust language".into()),
-                icon: None,
-                has_children: true,
-                type_node: NodeType::Section,
+    store_sec.nodes.insert(
+        rust_id,
+        NodeMeta {
+            id: rust_id,
+            parent_id: None,
+            sort_order: 0,
+            title: "Rust".into(),
+            description: Some("Rust language".into()),
+            icon: None,
+            has_children: true,
+            type_node: NodeType::Section,
+        },
+    );
+    store_sec.nodes.insert(
+        dioxus_id,
+        NodeMeta {
+            id: dioxus_id,
+            parent_id: None,
+            sort_order: 1,
+            title: "Dioxus".into(),
+            description: Some("Dioxus framework".into()),
+            icon: None,
+            has_children: true,
+            type_node: NodeType::Section,
+        },
+    );
+    store_sec.nodes.insert(
+        memory_id,
+        NodeMeta {
+            id: memory_id,
+            parent_id: Some(rust_id),
+            sort_order: 0,
+            title: "Memory".into(),
+            description: None,
+            icon: None,
+            has_children: true,
+            type_node: NodeType::Section,
+        },
+    );
+    store_sec.nodes.insert(
+        ownership_id,
+        NodeMeta {
+            id: ownership_id,
+            parent_id: Some(memory_id),
+            sort_order: 0,
+            title: "Ownership".into(),
+            description: None,
+            icon: None,
+            has_children: false,
+            type_node: NodeType::Article {
+                article_id: ownership_article,
             },
-        );
-    store_sec
-        .nodes
-        .insert(
-            dioxus_id,
-            NodeMeta {
-                id: dioxus_id,
-                parent_id: None,
-                sort_order: 1,
-                title: "Dioxus".into(),
-                description: Some("Dioxus framework".into()),
-                icon: None,
-                has_children: true,
-                type_node: NodeType::Section,
+        },
+    );
+    store_sec.nodes.insert(
+        borrow_id,
+        NodeMeta {
+            id: borrow_id,
+            parent_id: Some(memory_id),
+            sort_order: 1,
+            title: "Borrow Checker".into(),
+            description: None,
+            icon: None,
+            has_children: false,
+            type_node: NodeType::Article {
+                article_id: borrow_article,
             },
-        );
-    store_sec
-        .nodes
-        .insert(
-            memory_id,
-            NodeMeta {
-                id: memory_id,
-                parent_id: Some(rust_id),
-                sort_order: 0,
-                title: "Memory".into(),
-                description: None,
-                icon: None,
-                has_children: true,
-                type_node: NodeType::Section,
+        },
+    );
+    store_sec.nodes.insert(
+        signals_id,
+        NodeMeta {
+            id: signals_id,
+            parent_id: Some(dioxus_id),
+            sort_order: 0,
+            title: "Signals".into(),
+            description: None,
+            icon: None,
+            has_children: false,
+            type_node: NodeType::Article {
+                article_id: signals_article,
             },
-        );
-    store_sec
-        .nodes
-        .insert(
-            ownership_id,
-            NodeMeta {
-                id: ownership_id,
-                parent_id: Some(memory_id),
-                sort_order: 0,
-                title: "Ownership".into(),
-                description: None,
-                icon: None,
-                has_children: false,
-                type_node: NodeType::Article {
-                    article_id: ownership_article,
-                },
-            },
-        );
-    store_sec
-        .nodes
-        .insert(
-            borrow_id,
-            NodeMeta {
-                id: borrow_id,
-                parent_id: Some(memory_id),
-                sort_order: 1,
-                title: "Borrow Checker".into(),
-                description: None,
-                icon: None,
-                has_children: false,
-                type_node: NodeType::Article {
-                    article_id: borrow_article,
-                },
-            },
-        );
-    store_sec
-        .nodes
-        .insert(
-            signals_id,
-            NodeMeta {
-                id: signals_id,
-                parent_id: Some(dioxus_id),
-                sort_order: 0,
-                title: "Signals".into(),
-                description: None,
-                icon: None,
-                has_children: false,
-                type_node: NodeType::Article {
-                    article_id: signals_article,
-                },
-            },
-        );
+        },
+    );
     store_sec.children.insert(rust_id, vec![memory_id]);
-    store_sec.children.insert(memory_id, vec![ownership_id, borrow_id]);
+    store_sec
+        .children
+        .insert(memory_id, vec![ownership_id, borrow_id]);
     store_sec.children.insert(dioxus_id, vec![signals_id]);
     store_sec.loaded = HashSet::from([rust_id, dioxus_id, memory_id]);
     store_sec
@@ -345,7 +328,8 @@ pub fn fake_article_store() -> ArticleStore {
                     code_content: Some(
                         r#"fn main() {
     println!("Hello, world!");
-}"#.into(),
+}"#
+                        .into(),
                     ),
                 }),
             },
@@ -384,16 +368,14 @@ pub fn fake_article_store() -> ArticleStore {
     let article3 = Article::new("Components".into(), "Dioxus Team".into());
     let body3 = ArticleBody {
         article_id: article3.id,
-        blocks: vec![
-            Content {
-                id: ContentID::new(),
-                order: 0,
-                block: Block::Section(SectionData {
-                    title: Some("Components".into()),
-                    paragraph: Some("Components are reusable UI units.".into()),
-                }),
-            },
-        ],
+        blocks: vec![Content {
+            id: ContentID::new(),
+            order: 0,
+            block: Block::Section(SectionData {
+                title: Some("Components".into()),
+                paragraph: Some("Components are reusable UI units.".into()),
+            }),
+        }],
     };
     store.insert_article(article1.clone());
     store.insert_article(article2.clone());

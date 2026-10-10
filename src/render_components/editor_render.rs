@@ -1,8 +1,10 @@
-use crate::components::elements::editor_elements::article_body_editor::ArticleBodyEditor;
-
 use dioxus::prelude::*;
-use shared::manifesto::{Content, InsertPosition};
-use shared::new_type_id::ContentID;
+use domain::{
+    data::{Content, InsertPosition},
+    id::ContentID,
+};
+
+use crate::components::elements::editor_elements::article_body_editor::ArticleBodyEditor;
 
 #[component]
 pub fn RenderComponent(

@@ -7,12 +7,10 @@ use crate::components::elements::shared_elements::{
     code_block::CodeBlock, info_box::InfoBox, section::SectionText, warning_box::WarningBox,
 };
 
+use application::store::{EditorStore, ExsistDraft, Select};
 use dioxus::prelude::*;
-use shared::manifesto::{Block, Content, InsertPosition};
-use shared::new_type_id::ContentID;
-use shared::store::EditorStore;
-use shared::traits::editor_store::exsist_draft::ExsistDraft;
-use shared::traits::editor_store::select::Select;
+use domain::data::{Block, Content, InsertPosition};
+use domain::id::ContentID;
 
 #[component]
 pub fn ArticleBodyEditor(
@@ -69,7 +67,7 @@ fn Preview(block: Block) -> Element {
 
         Block::Warning(data) => rsx! {
             WarningBox {
-                warnig_data: data.clone()
+                warning_data: data.clone()
             }
         },
 
@@ -98,7 +96,7 @@ fn EditBlock(block: Block, content_id: ContentID, order: u32) -> Element {
         }
         Block::Warning(data) => {
             rsx! {
-                WarningBoxEditor { warnig_data: data.clone(), id: content_id }
+                WarningBoxEditor { warning_data: data.clone(), id: content_id }
             }
         }
         Block::Section(data) => {

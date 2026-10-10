@@ -1,5 +1,7 @@
+use application::store::ArticleStore;
 use dioxus::prelude::*;
-use shared::{manifesto::InsertPosition, new_type_id::ContentID, store::ArticleStore};
+use domain::{data::InsertPosition, id::ContentID};
+
 #[component]
 pub fn ToolBarBlock(
     id: ContentID,

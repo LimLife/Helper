@@ -2,7 +2,7 @@ mod paragraph;
 mod section_title;
 use super::section::{paragraph::Paragraph, section_title::SectionTitle};
 use dioxus::prelude::*;
-use shared::data_block::SectionData;
+use domain::data::SectionData;
 #[component]
 pub fn SectionText(section_data: SectionData) -> Element {
     rsx! {

@@ -1,8 +1,7 @@
+use application::editor_state::BlockEditorContext;
+use application::store::{EditorStore, ExsistDraft};
 use dioxus::prelude::*;
-use shared::data_block::SectionData;
-use shared::editor::BlockEditorContext;
-use shared::store::EditorStore;
-use shared::traits::editor_store::exsist_draft::ExsistDraft;
+use domain::data::SectionData;
 
 use crate::components::elements::editor_elements::panel_header::PanelHeader;
 use crate::components::elements::ui::code_view::TextEditor;

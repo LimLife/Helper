@@ -2,12 +2,10 @@ use crate::components::elements::{
     editor_elements::panel_header::PanelHeader, ui::code_view::TextEditor,
 };
 use crate::data_component::content_saver::Saver;
+use application::store::{ArticleStore, EditorStore, ExsistDraft};
 use dioxus::prelude::*;
-use shared::store::ArticleStore;
-use shared::{
-    data_block::CodeData, manifesto::Content, new_type_id::ContentID, store::EditorStore,
-    traits::editor_store::exsist_draft::ExsistDraft,
-};
+use domain::data::{CodeData, Content};
+use domain::id::ContentID;
 
 #[component]
 pub fn CodeEditor(code_data: CodeData, id: ContentID, order: u32) -> Element {

@@ -7,13 +7,15 @@ use crate::{
     render_components::editor_render::RenderComponent,
 };
 
-use dioxus::prelude::*;
-
-use shared::{
-    editor::{BlockEditorMode, BlockEditorTarget, NewDraftContent},
-    manifesto::{InsertPosition, NodeMeta},
-    new_type_id::ContentID,
+use application::{
+    draft::NewDraftContent,
+    editor_state::{BlockEditorMode, BlockEditorTarget},
     store::{ArticleStore, EditorStore},
+};
+use dioxus::prelude::*;
+use domain::{
+    data::{InsertPosition, NodeMeta},
+    id::ContentID,
 };
 
 #[component]

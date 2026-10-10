@@ -1,8 +1,10 @@
-use crate::data_component::server_saver::*;
-use shared::{
-    manifesto::Content,
-    new_type_id::{ArticleID, ContentID},
+use domain::{
+    data::Content,
+    id::{ArticleID, ContentID},
 };
+
+use crate::data_component::server_saver::*;
+
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub struct Saver;
 

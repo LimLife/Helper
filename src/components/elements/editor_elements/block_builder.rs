@@ -1,10 +1,12 @@
+use application::{
+    draft::NewDraftContent,
+    editor_state::BlockEditorTarget,
+    store::{EditorStore, NewDraft},
+};
 use dioxus::prelude::*;
-use shared::{
-    editor::{BlockEditorTarget, NewDraftContent},
-    manifesto::{Block, InsertPosition},
-    new_type_id::ArticleID,
-    store::EditorStore,
-    traits::editor_store::new_draft::NewDraft,
+use domain::{
+    data::{Block, InsertPosition},
+    id::ArticleID,
 };
 
 use crate::components::elements::editor_elements::block_editor::BlockEditor;

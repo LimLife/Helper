@@ -1,11 +1,13 @@
 use crate::components::elements::{
     editor_elements::panel_header::PanelHeader, ui::code_view::TextEditor,
 };
-use dioxus::prelude::*;
-use shared::{
-    data_block::CodeData, editor::BlockEditorContext, store::EditorStore,
-    traits::editor_store::exsist_draft::ExsistDraft,
+use application::{
+    editor_state::BlockEditorContext,
+    store::{EditorStore, ExsistDraft},
 };
+use dioxus::prelude::*;
+use domain::data::CodeData;
+
 #[component]
 pub fn CodeBlockBuilder(context: BlockEditorContext, data: CodeData) -> Element {
     let mut editor_store = use_context::<Signal<EditorStore>>();

@@ -1,5 +1,5 @@
 use dioxus::prelude::*;
-use shared::data_block::InfoData;
+use domain::data::InfoData;
 #[component]
 pub fn InfoBox(info_data: InfoData) -> Element {
     rsx! {

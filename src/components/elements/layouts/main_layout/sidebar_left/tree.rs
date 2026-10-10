@@ -1,12 +1,10 @@
 use crate::{
     components::elements::ui::collapse_list::CollapseList, data_component::cotent_loader::Loader,
 };
+use application::store::{ArticleStore, SectionStore};
 use dioxus::prelude::*;
-use shared::{
-    manifesto::NodeType,
-    new_type_id::NodeMetaID,
-    store::{ArticleStore, SectionStore},
-};
+use domain::{data::NodeType, id::NodeMetaID};
+
 #[component]
 pub fn Tree(node_id: NodeMetaID, deep: u32) -> Element {
     let store_section = use_context::<Signal<SectionStore>>();

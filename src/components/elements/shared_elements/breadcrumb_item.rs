@@ -1,5 +1,5 @@
 use dioxus::prelude::*;
-use shared::data_block::BreadcrumbData;
+use domain::data::BreadcrumbData;
 #[component]
 pub fn BreadcrumbItem(breadcrumb: Signal<Vec<BreadcrumbData>>) -> Element {
     let data = breadcrumb.read();

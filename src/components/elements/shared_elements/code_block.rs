@@ -3,7 +3,7 @@ mod code_header;
 mod code_nav;
 use super::code_block::{code_content::CodeContent, code_header::CodeHeader};
 use dioxus::prelude::*;
-use shared::data_block::CodeData;
+use domain::data::CodeData;
 #[component]
 pub fn CodeBlock(code: CodeData) -> Element {
     rsx! {

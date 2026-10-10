@@ -1,8 +1,8 @@
 use dioxus::prelude::*;
-use shared::data_block::WarningData;
+use domain::data::WarningData;
 #[component]
-pub fn WarningBox(warnig_data: WarningData) -> Element {
+pub fn WarningBox(warning_data: WarningData) -> Element {
     rsx! {
-        aside { class: "artical-body-warning-box", {{ warnig_data.warning.unwrap_or_default() }} }
+        aside { class: "artical-body-warning-box", {{ warning_data.warning.unwrap_or_default() }} }
     }
 }

@@ -1,0 +1,10 @@
+[package]
+name = "helper_application"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+domain  = {workspace = true}
+uuid = { workspace = true }
+chrono = { workspace = true }
+serde = { workspace = true }

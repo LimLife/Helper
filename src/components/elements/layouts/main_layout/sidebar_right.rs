@@ -9,7 +9,8 @@ use super::sidebar_right::{
     table_of_contents::TableOfContents,
 };
 use dioxus::prelude::*;
-use shared::manifesto::NodeMeta;
+use domain::data::NodeMeta;
+
 #[component]
 pub fn SidebarRight(node_right: Signal<Vec<NodeMeta>>) -> Element {
     rsx! {

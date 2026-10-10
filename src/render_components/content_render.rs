@@ -2,7 +2,7 @@ use crate::components::elements::shared_elements::{
     code_block::CodeBlock, info_box::InfoBox, section::SectionText, warning_box::WarningBox,
 };
 use dioxus::prelude::*;
-use shared::manifesto::{Block, Content};
+use domain::data::{Block, Content};
 #[component]
 pub fn RenderComponent(node_block: Vec<Content>) -> Element {
     rsx! {
@@ -18,7 +18,7 @@ pub fn RenderComponent(node_block: Vec<Content>) -> Element {
                     SectionText { section_data: section_data.clone() }
                 },
                 Block::Warning(warnig_data) => rsx! {
-                    WarningBox { warnig_data: warnig_data.clone() }
+                    WarningBox { warning_data: warnig_data.clone() }
                 },
             }
         }

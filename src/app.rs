@@ -7,8 +7,9 @@ use crate::data_component::{
     content_saver::Saver, cotent_loader::Loader, fake_data::data::fake_data,
 };
 
+use application::store::EditorStore;
 use dioxus::prelude::*;
-use shared::store::EditorStore;
+
 #[component]
 pub fn App() -> Element {
     let editor_store = use_signal(|| EditorStore::default());

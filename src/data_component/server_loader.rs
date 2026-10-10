@@ -1,9 +1,12 @@
 use dioxus::prelude::*;
 #[cfg(feature = "server")]
-use shared::store::{ArticleStore, SectionStore};
-use shared::{
-    manifesto::{Article, ArticleBody, NodeMeta},
-    new_type_id::{ArticleID, NodeMetaID},
+use domain::{
+    data::{Article, ArticleBody, NodeMeta},
+    id::{ArticleID, NodeMetaID},
+};
+use domain::{
+    data::{Article, ArticleBody, NodeMeta},
+    id::{ArticleID, NodeMetaID},
 };
 #[server]
 pub async fn server_load_children(parent_id: NodeMetaID) -> Result<Vec<NodeMeta>, ServerFnError> {

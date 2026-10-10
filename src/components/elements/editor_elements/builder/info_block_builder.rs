@@ -1,10 +1,10 @@
 use crate::components::elements::editor_elements::panel_header::PanelHeader;
 use crate::components::elements::ui::code_view::TextEditor;
+use application::editor_state::BlockEditorContext;
+use application::store::{EditorStore, ExsistDraft};
 use dioxus::prelude::*;
-use shared::data_block::InfoData;
-use shared::editor::BlockEditorContext;
-use shared::store::EditorStore;
-use shared::traits::editor_store::exsist_draft::ExsistDraft;
+use domain::data::InfoData;
+
 #[component]
 pub fn InfoBlockBuilder(context: BlockEditorContext, data: InfoData) -> Element {
     let mut editor_store = use_context::<Signal<EditorStore>>();

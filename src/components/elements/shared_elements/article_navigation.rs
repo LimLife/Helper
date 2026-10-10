@@ -4,7 +4,7 @@ use super::article_navigation::{
     next_article_link::NextArticleLink, prev_article_link::PrevArticleLink,
 };
 use dioxus::prelude::*;
-use shared::data_block::ArticleNavigationData;
+use domain::data::ArticleNavigationData;
 #[component]
 pub fn ArticleNavigation(navigate: ArticleNavigationData) -> Element {
     rsx! {
