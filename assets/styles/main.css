@@ -360,7 +360,7 @@
   justify-content: center;
   padding-bottom: 1.25rem;
   padding-top: 1.25rem;
-  border: 3px white dashed;
+  border: 3px var(--color-border-primary) dashed;
   font-weight: bold;
   font-size: 1.875rem;
 }
@@ -432,11 +432,18 @@
   font-size: var(--font-size-root);
 }
 
-.tree-root,
-.tree-node-children {
+.tree-root .tree-node-children {
   list-style: none;
   padding-left: 0;
   margin: 0;
+}
+
+.test-tree {
+  list-style: none;
+}
+
+.tree-node {
+  list-style: none;
 }
 
 .tree-node-children {
@@ -466,6 +473,7 @@
   --color-border-subtle: #181818;
   --color-border: #262626;
   --color-border-strong: #3a3a3a;
+  --color-border-primary: #ffffff;
   --color-accent: #6ea8fe;
   /* States */
   --color-success: #28a745;
@@ -505,6 +513,7 @@
   --color-bg-page: #ffffff;
   --color-text-primary: #000000;
   --color-bg-element: #0d0d0d;
+  --color-border-primary: #000000;
 }
 
 html,

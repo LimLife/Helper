@@ -4,3 +4,14 @@ version = "0.1.0"
 edition = "2024"
 
 [dependencies]
+dioxus          = { workspace = true , features = ["fullstack"]}
+application     = { workspace = true }
+infrastructure  = { workspace = true , optional = true }
+domain          = { workspace = true }
+
+anyhow          = { workspace = true }
+[features]
+
+server = ["dioxus/server",
+    "dep:infrastructure",
+    "infrastructure/server"]

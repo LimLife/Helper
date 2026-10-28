@@ -6,32 +6,47 @@ edition = "2021"
 
 
 [dependencies]
-domain  = {workspace = true}
-application = {workspace = true}
-anyhow = { workspace = true }
-dioxus = { workspace = true , features = ["fullstack", "router"] }
-tokio = { workspace = true, optional = true, features = ["macros", "rt-multi-thread"] }
-sqlx = { workspace = true,  optional = true, features = ["runtime-tokio","postgres","macros"]}
-uuid = { workspace = true,  features = ["js"] }
+domain          = { workspace = true }
+application     = { workspace = true }
+transport       = { workspace = true }
+serde_json      = { workspace = true }
+anyhow          = { workspace = true }
+dotenvy         = { workspace = true }
+dioxus          = { workspace = true , features = ["fullstack", "router"] }
+uuid            = { workspace = true,  features = ["js"] }
+
+
 
 [workspace]
 members = ["crate/helper_application",
     "crate/helper_domain"
-]
+, "crate/helper_infrastructure", "crate/helper_transport"]
 [workspace.dependencies]
-domain = {path ="./crate/helper_domain", package = "helper_domain"}
-application = {path = "./crate/helper_application", package= "helper_application"}
-uuid = { version = "1.23.2", features = ["v4", "serde"] }
-chrono = { version = "0.4", features = ["serde"] }
-serde = { version = "1.0.228", features = ["derive"] }
-anyhow = "1.0.99"
-dioxus ="0.7.10"
-tokio = "1.49.0"
-sqlx = "0.8"
+transport      = { path = "./crate/helper_transport",       package = "helper_transport" }
+domain         = { path = "./crate/helper_domain",          package = "helper_domain" }
+application    = { path = "./crate/helper_application",     package = "helper_application" }
+infrastructure = { path = "./crate/helper_infrastructure",  package = "helper_infrastructure" }
 
+anyhow           = "1.0.99"
+dotenvy          = "0.15"
+serde_json       = "1.0.154"
+chrono           =           { version = "0.4",     features = ["serde"] }
+serde            =           { version = "1.0.228", features = ["derive"] }
+uuid             =           { version = "1.23.2",  features = ["v4", "serde"] }
+dioxus           =           { version = "0.7.10"  }
+tokio            =           { version = "1.49.0"  }
+sqlx             =           { version = "0.8"     }
 
 [features]
 web = ["dioxus/web"]
 #desktop = ["dioxus/desktop"]
 #mobile = ["dioxus/mobile"]
-server = ["dioxus/server", "tokio", "sqlx", "dioxus/fullstack"]
+server = [
+    "dioxus/server",
+    "dioxus/fullstack",
+    "transport/server"
+]
+
+[profile.dev]
+opt-level = 0
+debug = true

@@ -3,7 +3,7 @@ use serde::{Deserialize, Serialize};
 use crate::type_id::{ArticleID, NodeMetaID};
 
 #[derive(Debug, Clone, Deserialize, Serialize, Default, PartialEq, Eq)]
-#[serde(tag = "type", rename_all = "snake_case")]
+#[serde(tag = "type", content = "data", rename_all = "snake_case")]
 pub enum NodeType {
     #[default]
     Section,

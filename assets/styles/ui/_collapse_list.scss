@@ -1,10 +1,13 @@
-.tree-root,
+.tree-root
 .tree-node-children {
     list-style: none;
     padding-left: 0;
     margin: 0;
 }
 
+.tree-node {
+    list-style: none;
+}
 .tree-node-children {
     padding-left: 1rem;
 }

@@ -23,6 +23,7 @@ pub fn AdminPage() -> Element {
     let article_store = use_context::<Signal<ArticleStore>>();
     let mut editor_store = use_context::<Signal<EditorStore>>();
     let mut editor_mode = use_signal(|| None::<BlockEditorMode>);
+
     let mut blocks = {
         let store = article_store.read();
         store

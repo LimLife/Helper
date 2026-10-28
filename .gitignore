@@ -7,3 +7,6 @@
 **/*.rs.bk
 /src/static/*.html
 static/index.html
+.env
+postgres-language-server.jsonc
+.zed/

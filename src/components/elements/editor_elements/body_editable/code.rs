@@ -1,7 +1,7 @@
 use crate::components::elements::{
     editor_elements::panel_header::PanelHeader, ui::code_view::TextEditor,
 };
-use crate::data_component::content_saver::Saver;
+use crate::data_use_cases::AppMutator;
 use application::store::{ArticleStore, EditorStore, ExsistDraft};
 use dioxus::prelude::*;
 use domain::data::{CodeData, Content};
@@ -13,7 +13,7 @@ pub fn CodeEditor(code_data: CodeData, id: ContentID, order: u32) -> Element {
     let original_data = code_data.clone();
     let editor_store = use_context::<Signal<EditorStore>>();
     let article_store = use_context::<Signal<ArticleStore>>();
-    let saver = use_context::<Signal<Saver>>();
+    let saver = use_context::<Signal<AppMutator>>();
     let mut edit_data = use_signal(|| code_data.clone());
     if editor_store.read().has_draft(id) {
         if let Some(code) = editor_store.read().draft_as::<Code>(id) {
@@ -36,7 +36,7 @@ pub fn CodeEditor(code_data: CodeData, id: ContentID, order: u32) -> Element {
                 let result = saver.read().update_content(article_id, content).await;
                 match result {
                     Ok(content) => {
-                        editor_store.write().discard_draft(content.id);
+                        editor_store.write().discard_draft(content);
                     }
                     Err(e) => {
                         debug!("Error saving {e}");

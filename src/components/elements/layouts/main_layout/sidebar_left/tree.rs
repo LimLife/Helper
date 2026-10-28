@@ -1,6 +1,4 @@
-use crate::{
-    components::elements::ui::collapse_list::CollapseList, data_component::cotent_loader::Loader,
-};
+use crate::{components::elements::ui::collapse_list::CollapseList, data_use_cases::AppLoader};
 use application::store::{ArticleStore, SectionStore};
 use dioxus::prelude::*;
 use domain::{data::NodeType, id::NodeMetaID};
@@ -8,8 +6,8 @@ use domain::{data::NodeType, id::NodeMetaID};
 #[component]
 pub fn Tree(node_id: NodeMetaID, deep: u32) -> Element {
     let store_section = use_context::<Signal<SectionStore>>();
-    let mut store_article = use_context::<Signal<ArticleStore>>();
-    let loader = use_context::<Loader>();
+    let store_article = use_context::<Signal<ArticleStore>>();
+    let loader = use_context::<Signal<AppLoader>>();
     let (node, expand, children) = {
         let store_read = store_section.read();
         let Some(node) = store_read.nodes.get(&node_id) else {
@@ -28,7 +26,7 @@ pub fn Tree(node_id: NodeMetaID, deep: u32) -> Element {
         )
     };
     let padding = format!("padding-left: {}rem;", deep as f64 * 1.25);
-    match &node.type_node {
+    match node.type_node {
         NodeType::Section => {
             rsx! {
                 CollapseList {
@@ -37,10 +35,11 @@ pub fn Tree(node_id: NodeMetaID, deep: u32) -> Element {
                     label: rsx! {
                         div {
                             onclick: move |_| {
+                                let mut store = store_section;
+                                let loader = loader;
                                 async move {
-                                    let mut store = use_context::<Signal<SectionStore>>();
-                                    if !store.read().is_loaded(node.id.clone()) {
-                                        let children = loader.load_children(node.id.clone()).await.unwrap();
+                                    if !store.read().is_loaded(node.id) {
+                                        let children = loader.read().load_children(node.id).await.unwrap();
                                         store.write().insert_children(node.id.clone(), children);
                                     }
                                     store.write().toggle_expand(node_id);
@@ -61,19 +60,31 @@ pub fn Tree(node_id: NodeMetaID, deep: u32) -> Element {
             }
         }
         NodeType::Article { article_id } => {
-            let article = *article_id;
             rsx! {
                 li { style: "{padding}",
                     div {
                         class: "tree-article",
                         onclick: move |_| {
+                            let mut store_article = store_article;
+                            let loader = loader;
                             async move {
-                                let mut store = use_context::<Signal<ArticleStore>>();
-                                if !store_article.read().has_article(article.clone()) {
-                                    let children = loader.load_article(article).await.unwrap();
-                                    store.write().insert_article(children);
+                                if !store_article.read().has_article(article_id) {
+                                    let article = loader.read().article(article_id).await;
+
+                                    if let Ok(article) = article {
+                                        store_article.write().insert_article(article);
+                                    }
                                 }
-                                store_article.write().open(article);
+
+                                if !store_article.read().has_body(article_id) {
+                                    let body = loader.read().load_article_body(article_id).await;
+
+                                    if let Ok(body) = body {
+                                        store_article.write().insert_body(body);
+                                    }
+                                }
+
+                                store_article.write().open(article_id);
                             }
                         },
                         "{node.title}"

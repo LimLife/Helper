@@ -13,7 +13,6 @@ pub struct ArticleStore {
     pub bodies: HashMap<ArticleID, ArticleBody>,
     pub current: Option<ArticleID>,
 }
-
 impl ArticleStore {
     pub fn draft(&self, content_id: ContentID) -> Option<Draft> {
         let body = self.current_body()?;
