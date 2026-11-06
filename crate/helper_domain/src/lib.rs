@@ -1,8 +1,8 @@
 mod data_block;
 mod insert_position;
 mod manifesto;
+mod navigations;
 mod type_id;
-
 pub mod data {
     pub use crate::data_block::{
         ArticleHeaderData, ArticleNavigationData, BreadcrumbData, CodeData, InfoData, SectionData,
@@ -18,7 +18,9 @@ pub mod data {
         root::RootManifest,
     };
 }
-
+pub mod navigation {
+    pub use crate::navigations::navigation_segment::NavigationSegment;
+}
 pub mod id {
     pub use crate::type_id::{ArticleID, ContentID, NodeMetaID};
 }

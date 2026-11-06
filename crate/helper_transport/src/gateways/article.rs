@@ -1,7 +1,7 @@
 use crate::dioxus::article::{article, article_body};
 use application::gateway::ArticleGateway;
 
-#[derive(Clone, Copy)]
+#[derive(Default, Clone, Copy)]
 pub struct ArticleGatewayDioxus;
 
 impl ArticleGateway for ArticleGatewayDioxus {

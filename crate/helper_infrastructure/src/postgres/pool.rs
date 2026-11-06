@@ -1,4 +1,5 @@
 use application::config::DBConfig;
+
 use sqlx::{PgPool, postgres::PgPoolOptions};
 
 pub async fn create_pool(config: DBConfig) -> Result<PgPool, sqlx::Error> {

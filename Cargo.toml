@@ -6,26 +6,23 @@ edition = "2021"
 
 
 [dependencies]
-domain          = { workspace = true }
-application     = { workspace = true }
-transport       = { workspace = true }
-serde_json      = { workspace = true }
-anyhow          = { workspace = true }
-dotenvy         = { workspace = true }
-dioxus          = { workspace = true , features = ["fullstack", "router"] }
-uuid            = { workspace = true,  features = ["js"] }
-
-
+dioxus_ui          = { workspace = true }
+application        = { workspace = true }
+transport          = { workspace = true , optional = true }
+dotenvy            = { workspace = true }
+dioxus             = { workspace = true, features = ["fullstack"] }
+console_error_panic_hook = { workspace = true }
 
 [workspace]
 members = ["crate/helper_application",
     "crate/helper_domain"
-, "crate/helper_infrastructure", "crate/helper_transport"]
+, "crate/helper_infrastructure", "crate/helper_transport", "crate/helper_ui_dioxus"]
 [workspace.dependencies]
 transport      = { path = "./crate/helper_transport",       package = "helper_transport" }
 domain         = { path = "./crate/helper_domain",          package = "helper_domain" }
 application    = { path = "./crate/helper_application",     package = "helper_application" }
 infrastructure = { path = "./crate/helper_infrastructure",  package = "helper_infrastructure" }
+dioxus_ui      = { path = "./crate/helper_ui_dioxus",       package = "helper_ui_dioxus" }
 
 anyhow           = "1.0.99"
 dotenvy          = "0.15"
@@ -34,19 +31,23 @@ chrono           =           { version = "0.4",     features = ["serde"] }
 serde            =           { version = "1.0.228", features = ["derive"] }
 uuid             =           { version = "1.23.2",  features = ["v4", "serde"] }
 dioxus           =           { version = "0.7.10"  }
+dioxus-logger    = "=0.7.10"
 tokio            =           { version = "1.49.0"  }
 sqlx             =           { version = "0.8"     }
+console_error_panic_hook = "0.1.7"
 
 [features]
-web = ["dioxus/web"]
-#desktop = ["dioxus/desktop"]
-#mobile = ["dioxus/mobile"]
+#default = ["web"]
+
+web = ["dioxus_ui/web"]
 server = [
     "dioxus/server",
-    "dioxus/fullstack",
-    "transport/server"
+   "transport/server",
+   "dep:transport",
+   "dioxus_ui/server"
 ]
 
+
 [profile.dev]
-opt-level = 0
 debug = true
+opt-level = 0

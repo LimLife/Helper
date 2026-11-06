@@ -5,7 +5,7 @@ use domain::{
 
 use crate::dioxus::content::{create_content_server, delete_content_server, update_content_server};
 use application::gateway::{ContentError, ContentGateway};
-#[derive(Clone, Copy)]
+#[derive(Default, Clone, Copy)]
 pub struct ContentGatewayDioxus;
 
 impl ContentGateway for ContentGatewayDioxus {

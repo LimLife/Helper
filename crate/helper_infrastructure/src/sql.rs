@@ -11,24 +11,20 @@ pub async fn migrate_database(pool: PgPool) -> Result<(), sqlx::Error> {
 }
 
 pub async fn seed_database(pool: &PgPool, seed: SeedMode) -> Result<(), sqlx::Error> {
-    let count: i64 = sqlx::query_scalar("SELECT count(*) FROM articles")
-        .fetch_one(&pool.clone())
-        .await?;
-    if count == 0 {
-        Ok(())
-    } else {
-        let seed_sql: Option<&str> = match seed {
-            SeedMode::None => None,
-            SeedMode::Dev => Some(include_str!("./sql/seeds/development.sql")),
-            SeedMode::Demo => None,
-            SeedMode::Test => None,
-        };
-        match seed_sql {
-            Some(sql_raw) => {
-                sqlx::raw_sql(sql_raw).execute(pool).await?;
-                Ok(())
-            }
-            None => Ok(()),
-        }
+    let Some(script) = seed_script(seed) else {
+        return Ok(());
+    };
+
+    let mut tx = pool.begin().await?;
+    sqlx::raw_sql(script).execute(&mut *tx).await?;
+    tx.commit().await?;
+    Ok(())
+}
+fn seed_script(mode: SeedMode) -> Option<&'static str> {
+    match mode {
+        SeedMode::None => None,
+        SeedMode::Dev => Some(include_str!("./sql/seeds/development.sql")),
+        SeedMode::Demo => None,
+        SeedMode::Test => None,
     }
 }

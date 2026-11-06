@@ -1,10 +1,9 @@
 use crate::dioxus::node::{load_children, load_root};
 use application::gateway::{ContentError, NodeGateway};
 use domain::data::NodeMeta;
-#[derive(Clone, Copy)]
+#[derive(Default, Clone, Copy)]
 pub struct NodeGatewayDioxus;
 
-//Ошибка пишет что не видит контекста у NodeGatewayDioxus
 impl NodeGateway for NodeGatewayDioxus {
     async fn load_root(&self) -> Result<Vec<NodeMeta>, ContentError> {
         load_root()

@@ -1,6 +1,7 @@
 pub mod app_service;
 mod block_editor;
 pub mod config;
+pub mod data_use_cases;
 mod drafts;
 mod gateways;
 mod repositories;

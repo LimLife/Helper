@@ -5,6 +5,15 @@ pub struct DBConfig {
     pub seed_mode: SeedMode,
 }
 
+impl DBConfig {
+    pub fn new(database_url: String, database_max_connection: u32, seed_mode: SeedMode) -> Self {
+        Self {
+            database_url,
+            database_max_connection,
+            seed_mode,
+        }
+    }
+}
 #[derive(Debug, Clone)]
 pub enum SeedMode {
     None,
@@ -14,14 +23,14 @@ pub enum SeedMode {
 }
 
 impl std::str::FromStr for SeedMode {
-    type Err = ();
+    type Err = String;
     fn from_str(s: &str) -> Result<Self, Self::Err> {
         match s {
-            "Development" => Result::Ok(SeedMode::Dev),
-            "Demo" => Result::Ok(SeedMode::Demo),
-            "Test" => Result::Ok(SeedMode::Test),
-            s if s.is_empty() => Result::Ok(SeedMode::None),
-            _ => Result::Ok(SeedMode::None),
+            "Development" => Ok(SeedMode::Dev),
+            "Demo" => Ok(SeedMode::Demo),
+            "Test" => Ok(SeedMode::Test),
+            "" => Ok(SeedMode::None),
+            other => Err(format!("unknown SEED_MODE: {other:?}")),
         }
     }
 }
