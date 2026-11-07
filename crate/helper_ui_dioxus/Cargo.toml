@@ -1,16 +1,16 @@
 [package]
 name = "helper_ui_dioxus"
-version = "0.1.0"
-edition = "2024"
+version = { workspace = true }
+edition = { workspace = true }
 
 [dependencies]
-domain          = { workspace = true }
-application     = { workspace = true }
-transport       = { workspace = true }
-anyhow          = { workspace = true }
-dioxus          = { workspace = true , features = ["router"] }
-dioxus-logger   = { workspace = true }
-uuid            = { workspace = true,  features = ["js"] }
+domain                   = { workspace = true }
+application              = { workspace = true }
+transport                = { workspace = true }
+anyhow                   = { workspace = true }
+dioxus                   = { workspace = true , features = ["router"] }
+dioxus-logger            = { workspace = true }
+uuid                     = { workspace = true,  features = ["js"] }
 console_error_panic_hook = { workspace = true }
 
 [features]

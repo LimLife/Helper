@@ -1,14 +1,13 @@
 [package]
 name = "helper_transport"
-version = "0.1.0"
-edition = "2024"
+version = { workspace = true }
+edition = { workspace = true }
 
 [dependencies]
 dioxus          = { workspace = true }
 application     = { workspace = true }
 infrastructure  = { workspace = true , optional = true }
 domain          = { workspace = true }
-
 anyhow          = { workspace = true }
 
 [features]

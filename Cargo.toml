@@ -1,19 +1,24 @@
 [package]
 name = "helper"
-version = "0.1.1"
 authors = ["LimLife"]
-edition = "2021"
+version = { workspace = true }
+edition = { workspace = true }
 
 
 [dependencies]
-dioxus_ui          = { workspace = true }
-application        = { workspace = true }
-transport          = { workspace = true , optional = true }
-dotenvy            = { workspace = true }
-dioxus             = { workspace = true, features = ["fullstack"] }
+dioxus_ui                = { workspace = true }
+application              = { workspace = true }
+transport                = { workspace = true , optional = true }
+dotenvy                  = { workspace = true }
+dioxus                   = { workspace = true, features = ["fullstack"] }
 console_error_panic_hook = { workspace = true }
 
+[workspace.package]
+version = "0.1.1"
+edition = "2024"
+
 [workspace]
+resolver = "2"
 members = ["crate/helper_application",
     "crate/helper_domain"
 , "crate/helper_infrastructure", "crate/helper_transport", "crate/helper_ui_dioxus"]
@@ -24,20 +29,21 @@ application    = { path = "./crate/helper_application",     package = "helper_ap
 infrastructure = { path = "./crate/helper_infrastructure",  package = "helper_infrastructure" }
 dioxus_ui      = { path = "./crate/helper_ui_dioxus",       package = "helper_ui_dioxus" }
 
-anyhow           = "1.0.99"
-dotenvy          = "0.15"
-serde_json       = "1.0.154"
-chrono           =           { version = "0.4",     features = ["serde"] }
-serde            =           { version = "1.0.228", features = ["derive"] }
-uuid             =           { version = "1.23.2",  features = ["v4", "serde"] }
-dioxus           =           { version = "0.7.10"  }
-dioxus-logger    = "=0.7.10"
-tokio            =           { version = "1.49.0"  }
-sqlx             =           { version = "0.8"     }
+
+
+anyhow                   = "1.0.99"
+dotenvy                  = "0.15"
+serde_json               = "1.0.154"
+dioxus-logger            = "=0.7.10"
 console_error_panic_hook = "0.1.7"
+chrono                   =           { version = "0.4",     features = ["serde"] }
+serde                    =           { version = "1.0.228", features = ["derive"] }
+uuid                     =           { version = "1.23.2",  features = ["v4", "serde"] }
+dioxus                   =           { version = "0.7.10"  }
+tokio                    =           { version = "1.49.0"  }
+sqlx                     =           { version = "0.8"     }
 
 [features]
-#default = ["web"]
 
 web = ["dioxus_ui/web"]
 server = [

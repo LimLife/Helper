@@ -1760,7 +1760,7 @@ dependencies = [
 
 [[package]]
 name = "helper_application"
-version = "0.1.0"
+version = "0.1.1"
 dependencies = [
  "chrono",
  "helper_domain",
@@ -1779,7 +1779,7 @@ dependencies = [
 
 [[package]]
 name = "helper_infrastructure"
-version = "0.1.0"
+version = "0.1.1"
 dependencies = [
  "chrono",
  "helper_application",
@@ -1791,7 +1791,7 @@ dependencies = [
 
 [[package]]
 name = "helper_transport"
-version = "0.1.0"
+version = "0.1.1"
 dependencies = [
  "anyhow",
  "dioxus",
@@ -1802,7 +1802,7 @@ dependencies = [
 
 [[package]]
 name = "helper_ui_dioxus"
-version = "0.1.0"
+version = "0.1.1"
 dependencies = [
  "anyhow",
  "console_error_panic_hook",
